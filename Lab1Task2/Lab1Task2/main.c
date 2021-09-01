@@ -3,7 +3,7 @@
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: Lab1Task2
 * Date: September 1, 2021
-* Description: This program 
+* Description: This program performs various mathematical operations.
 */
 
 #define _CRT_SECURE_NO_WARNINGS // necessary to ignore scanf_s () warnings
