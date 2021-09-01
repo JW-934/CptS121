@@ -9,7 +9,7 @@ int main(void)
 {
 	double d1 = 0.0;
 	int i1 = 0;
-	char 
+	char character1 = '\0'; // \0 is the null character
 
 	printf("Enter a double precision value: ");
 	scanf("%lf", &d1);
