@@ -1,1 +1,1 @@
-This repository contains my code for CPTS121.
+This repository contains my code for CptS121.
