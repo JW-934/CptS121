@@ -19,7 +19,7 @@ int main(void) // the starting point for all C programs
 {
 
     // we need to request memory for
-/*
+
     int number1_int = 0, number2_int = 0; // 2 variable declarations - reserves two memory blocks for integers and sets them to 0's
 
     double number1_float = 0.0, number2_float = 0.0; // reserves two memory blocks for numbers with high precision (floating-point)
@@ -86,7 +86,7 @@ int main(void) // the starting point for all C programs
     printf("Enter a, b, c, d, and x (Integers): ");
     scanf("%d %d %d %d %d", &a, &b, &c, &d, &x);
     printf("y = %lf", (double)(3 * (a * (x * x * x)) + ((double)1 / 4) * (b * (x * x)) + (10 * (c * x)) + (-5 * d)));
-    */
+ 
 
     //e. Prompts the user for inputs into the circumference of circle equation provided and determines the circumference value
     double radius = 0;
