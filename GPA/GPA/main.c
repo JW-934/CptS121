@@ -40,8 +40,9 @@ int main(void)
 	weighted_gp = (gp1 * credits1) + (gp2 * credits2) + 
 		(gp3 * credits3);
 
+	gpa = weighted_gp / sum_credits;
 
-
+	printf("GPA: %.2lf\n", gpa);
 
 
 
