@@ -15,7 +15,25 @@ int main(void)
 	int credits1 = 0, credits2 = 0, credits3 = 0;
 	double gp1 = 0, gp2 = 0, gp3 = 0;
 
+	printf("Enter grade point for class 1: ");
+	scanf("%lf", &gp1);
+
+	printf("Enter credits for class 1: ");
+	scanf("%d", &credits1);
 	
+	printf("Enter grade point for class 2: ");
+	scanf("%lf", &gp2);
+
+	printf("Enter credits for class 2: ");
+	scanf("%d", &credits2);
+	
+	printf("Enter grade point for class 3: ");
+	scanf("%lf", &gp3);
+
+	printf("Enter credits for class 3: ");
+	scanf("%d", &credits3);
+
+
 
 
 
