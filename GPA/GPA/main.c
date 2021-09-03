@@ -12,8 +12,10 @@
 
 int main(void)
 {
-	int credits1 = 0, credits2 = 0, credits3 = 0;
-	double gp1 = 0, gp2 = 0, gp3 = 0;
+	int credits1 = 0, credits2 = 0, credits3 = 0,
+		sum_credits = 0;
+	double gp1 = 0, gp2 = 0, gp3 = 0, weighted_gp = 0,
+		gpa = 0;
 
 	printf("Enter grade point for class 1: ");
 	scanf("%lf", &gp1);
@@ -32,6 +34,11 @@ int main(void)
 
 	printf("Enter credits for class 3: ");
 	scanf("%d", &credits3);
+
+	sum_credits = credits1 + credits2 + credits3;
+
+	weighted_gp = (gp1 * credits1) + (gp2 * credits2) + 
+		(gp3 * credits3);
 
 
 
