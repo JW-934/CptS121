@@ -2,17 +2,18 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021
 * Programming Assignment: PA1
-* Date: September 1, 2021
+* Date: September 2, 2021
 */
 
 #define _CRT_SECURE_NO_WARNINGS
+#define PI 3.141592653
 #include <stdio.h>
 #include <math.h>
-
+ 
 int main(void)
 {
 //1. Total series resistance
-/*	int R1 = 0, R2 = 0, R3 = 0;
+	int R1 = 0, R2 = 0, R3 = 0;
 
 	printf("Enter the values of 3 resistors connected in series (integers): ");
 	scanf("%d %d %d", &R1, &R2, &R3);
@@ -54,12 +55,13 @@ int main(void)
 	scanf("%lf, %lf %lf, %lf", &x1, &y1, &x2, &y2);
 	printf("Distance between points : %lf\n", sqrt((pow(x1-x2, 2) + pow(y1-y2, 2))));
 	
-	*/
+	
 //7. General equation
-	
-	
-	
-	
+	int a = 0;
+	double x = 0, y = 0, z = 0;
+	printf("Enter a, x, y, z (a is an integer): ");
+	scanf("%d, %lf, %lf, %lf", &a, &x, &y, &z);
+	printf("New y: %lf\n", (y / ((double)3 / 17) - z + (x / (a % 2)) + PI));
 	
 	return 0;
 }
