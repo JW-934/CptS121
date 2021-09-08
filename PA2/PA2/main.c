@@ -15,6 +15,7 @@ int calculate_series_resistance(int r1, int r2, int r3);
 double calculate_total_sales_tax(double sales_tax_rate, double item_cost);
 double calculate_volume_pyramid(double l, double w, double h);
 double calc_para_resist(int r1, int r2, int r3);
+char encode_char(char character, int shift);
 
 int main(void)
 {
@@ -55,12 +56,15 @@ int main(void)
 	//parallel_resist = calc_para_resist(newR1, newR2, newR3);
 	//printf("Total parallel resistance: %.2lf", parallel_resist);
 
+	//Character encoding
+	char plaintext = ' ', new_char = ' ';
+	int shift = 0;
 
+	printf("Enter one character and a shift integer (a, shift): ");
+	scanf("%c, %d", &plaintext, &shift);
 
-
-
-
-
+	new_char = encode_char(plaintext, shift);
+	printf("Encoded Character: %c", new_char);
 
 
 
@@ -86,7 +90,10 @@ double calc_para_resist(int r1, int r2, int r3)
 	return (1.0 / ((1.0 / r1) + (1.0 / r2) + (1.0 / r3)));
 }
 
-
+char encode_char(char character, int shift) 
+{
+	return((character - 'a') + 'A' - shift);
+}
 
 
 
