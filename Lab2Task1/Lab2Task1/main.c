@@ -1,7 +1,7 @@
 /*
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
-* Programming Assignment: Lab2Task1
+* Programming Assignment: Lab2
 * Date: September 8, 2021
 * Description: This program outputs the equation 
 *			   of the perpendicular bisector of the line segment 
