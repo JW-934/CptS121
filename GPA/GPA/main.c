@@ -1,8 +1,9 @@
 /*
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
-* Date: September 3, 2021
+* Date: September 3, 2021, 9-10-21
 * Description: Prompts for credits possible in 3 classes, corresponding grade points,
+*			   then calculates cumulative GPA
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -10,10 +11,12 @@
 #include <math.h>
 #include <stdio.h>
 
+#define PI 3.14159
+
 // function declaration - function prototype
 // double f(double x);
 double get_gp(int class_num);
-
+int calculate_sum_credits(int c1, int c2, int c3);
 
 
 int main(void)
@@ -47,7 +50,9 @@ int main(void)
 	printf("Enter credits for class 3: ");
 	scanf("%d", &credits3);
 
-	sum_credits = credits1 + credits2 + credits3;
+	//sum_credits = credits1 + credits2 + credits3;
+
+	sum_credits = calculate_sum_credits(credits1, credits2, credits3);
 
 	weighted_gp = (gp1 * credits1) + (gp2 * credits2) + 
 		(gp3 * credits3);
@@ -79,4 +84,17 @@ double get_gp(int class_num)
 
 	return gp;
 }
+
+int calculate_sum_credits(int c1, int c2, int c3)
+{
+	return c1 + c2 + c3;
+}
+
+
+
+
+
+
+
+
 
