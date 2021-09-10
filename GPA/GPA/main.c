@@ -17,7 +17,7 @@
 // double f(double x);
 double get_gp(int class_num);
 int calculate_sum_credits(int c1, int c2, int c3);
-
+double calculate_gpa(double weighted_gp, double sum_credits);
 
 int main(void)
 {
@@ -90,8 +90,14 @@ int calculate_sum_credits(int c1, int c2, int c3)
 	return c1 + c2 + c3;
 }
 
+double calculate_gpa(double weighted_gp, double sum_credits)
+{
+	double gpa = 0;
 
+	gpa = weighted_gp / sum_credits;
 
+	return gpa;
+}
 
 
 
