@@ -1,3 +1,13 @@
+/*
+* Programmer: Jesse Watson
+* Class: CptS 121, Fall 2021; Lab Section 7
+* Date: September 3, 2021, 9-10-21, 9-13-21
+* Description: Prompts for credits possible in 3 classes, corresponding grade points,
+*			   then calculates cumulative GPA
+*/
+
+#include "gpa.h" // User defined files use double quotes
+
 /*double f(double x) // function header
 {
 	return x * x;
