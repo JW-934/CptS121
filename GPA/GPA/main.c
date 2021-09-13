@@ -15,6 +15,10 @@ int main(void)
 		sum_credits = 0;
 	double gp1 = 0, gp2 = 0, gp3 = 0, weighted_gp = 0,
 		gpa = 0;
+	FILE* infile = NULL; //Pointer
+
+	infile = fopen("data.txt", "r"); //r is read mode, connects file to program
+	fscanf(infile, "%lf", &gp1); //file scanf
 
 	/*printf("Enter grade point for class 1: ");
 	scanf("%lf", &gp1);*/
