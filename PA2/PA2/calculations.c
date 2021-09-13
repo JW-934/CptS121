@@ -7,6 +7,8 @@
 *			   parallel resistance, character encoding, distance, and general equations
 */
 
+#include "PA2.h"
+
 int calculate_series_resistance(int r1, int r2, int r3)
 {
 	return (r1 + r2 + r3);
