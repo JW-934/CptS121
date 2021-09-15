@@ -3,7 +3,8 @@
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: Lab3Task3
 * Date: September 15, 2021
-* Description: This program 
+* Description: This program prompts the user for exam, lab, and project scores then
+*			   calculates the weighted average.
 */
 
 #define _CRT_SECURE_NO_WARNINGS
