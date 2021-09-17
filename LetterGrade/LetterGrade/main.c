@@ -17,12 +17,12 @@
 int main(void)
 {
 	int score1 = 0, score2 = 0, score3 = 0;
-	FILE* infile = NULL, * outfile = NULL;
+	FILE* infile = NULL, * outfile = NULL;              // in/outfile is just the file's identifier (using the null pointer here)
 	char letter_grade1 = '\0', letter_grade2 = '\0',
 		letter_grade3 = '\0';
 
-	infile = fopen("scores.dat", "r");
-	outfile = fopen("grades.dat", "w"); // write - output file
+	infile = fopen("scores.dat", "r");			// "filename", "mode"
+	outfile = fopen("letterGrade.dat", "w");	// write - output file
 
 	//score1 = fscanf(infile, "%d", &score1);
 	fscanf(infile, "%d", &score1);

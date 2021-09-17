@@ -18,7 +18,7 @@ char determine_letter_grade(int score) // function header
 		// if statement body
 		letter_grade = 'A';
 	}
-	if ((score < 90) && (score >= 80)) // && logical AND
+	if ((score < 90) && (score >= 80)) // && logical AND (compound condition)
 	{
 		letter_grade = 'B';
 	}
