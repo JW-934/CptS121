@@ -3,8 +3,10 @@
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA3
 * Date: September 20, 2021
-* Description: This program
+* Description: This program calculates and stores GPA Mean, Class Standing Mean, Age Mean,
+*			   GPA Standard Deviation, GPA Min, and GPA Max in an output file.
 */
+
 #include "PA3.h"
 
 double read_double(FILE* infile)
@@ -126,4 +128,30 @@ double get_gpa(FILE* infile)
 	unused = read_double(infile);
 
 	return gpa;
+}
+
+int get_standing(FILE* infile)
+{
+	//int standing, unused;
+
+	int unused = read_double(infile);
+	unused = read_double(infile);
+	int standing = read_double(infile);
+	unused = read_double(infile);
+
+	// Testing: printf("standing unused: %d %d\n", standing, unused);
+	
+	return standing;
+}
+
+double get_age(FILE* infile)
+{
+	double age = 0, unused = 0;
+
+	unused = read_double(infile);
+	unused = read_double(infile);
+	unused = read_double(infile);
+	age = read_double(infile);
+
+	return age;
 }
