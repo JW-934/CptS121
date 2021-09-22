@@ -20,7 +20,3 @@ double get_weight(FILE* infile);
 double get_height(FILE* infile);
 double calculate_BMR(double age, char gender, double weight, double height);
 double calculate_daily_calories(int activity, double bmr);
-
-
-
-

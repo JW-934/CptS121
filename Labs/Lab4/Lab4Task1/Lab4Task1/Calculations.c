@@ -112,4 +112,3 @@ double calculate_daily_calories(int activity, double bmr)
 	}
 	return calories;
 }
-

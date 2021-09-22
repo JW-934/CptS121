@@ -13,6 +13,7 @@ int main(void)
 	char all_star, regular_season, world_series, gold_glove, silver_slugger, home_run, batting_average;
 	double bonus = 0;
 	
+	//Prompts for awards
 	printf("All-Star Game Appearance? (y/n): ");
 	scanf(" %c", &all_star);
 	
@@ -34,6 +35,7 @@ int main(void)
 	printf("Batting Average Champ? (y/n): ");
 	scanf(" %c", &batting_average);
 
+	//Sums up bonuses
 	if (all_star == 'y' || all_star == 'Y')
 	{
 		bonus = bonus + 25000;
@@ -69,5 +71,6 @@ int main(void)
 		bonus = bonus + 25000;
 	}
 
+	//Displays bonus
 	printf("End of Season Bonus: %.2lf", bonus);
 }

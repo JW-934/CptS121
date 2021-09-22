@@ -16,16 +16,19 @@ int main(void)
 	int operation;
 	double number1, number2, number3, number4, number5, result;
 	
+	//Prompt for desired operation
 	printf("1: Average\n2: Maximum Value\n3: Minimum Value\n");
 	printf("Choose and operation (1, 2, or 3): ");
 	scanf("%d", &operation);
 
+	//Reads data from file
 	number1 = read_double(infile);
 	number2 = read_double(infile);
 	number3 = read_double(infile);
 	number4 = read_double(infile);
 	number5 = read_double(infile);
 	
+	//Determines which operation to perform
 	if (operation == 1)
 	{
 		result = calculate_average(number1, number2, number3, number4, number5);
