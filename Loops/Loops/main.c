@@ -41,7 +41,7 @@ int main(void)
 
 	// value of count here? 11
 
-	for (count = 0; count < 10; ++count)
+	for (count = 0; count < 10; ++count) //same count as earlier, variable not just in for scope
 	{
 		printf("for count: %d\n", count + 1);
 	}
