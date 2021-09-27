@@ -54,7 +54,7 @@ int main(void)
 	{
 		printf("do-while count: %d\n", count + 1);
 		count++;
-	} while (count < 10);
+	} while (count < 10); //Semicolon required here
 
 	return 0;
 }
