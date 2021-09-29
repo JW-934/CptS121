@@ -44,3 +44,13 @@ int check_wager_amount(double wager, double balance)
 
 	return enough_money;
 }
+
+int roll_die()
+{
+
+}
+
+int calculate_sum_dice(int die1_value, int die2_value)
+{
+
+}

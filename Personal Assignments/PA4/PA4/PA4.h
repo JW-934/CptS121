@@ -15,3 +15,5 @@ void print_game_rules();
 double get_game_balance();
 double get_wager_amount();
 int check_wager_amount(double wager, double balance);
+int roll_die();
+int calculate_sum_dice(int die1_value, int die2_value);
