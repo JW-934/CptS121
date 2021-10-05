@@ -10,8 +10,8 @@
 
 int main(void)
 {
-	int option, die1, die2, sum_dice;
-	double balance, wager;
+	int option, die1, die2, sum_dice, point_value;
+	double balance = 2000, wager;
 	
 	srand((unsigned int) time(NULL)); // seed rand, only call once in program
 
@@ -24,7 +24,7 @@ int main(void)
 		switch (option) //all code under selected case will run, add breaks
 		{
 		case DISPLAY_RULES:
-			printf("Rules:\n");
+			printf("\nRules:\n");
 			print_game_rules();
 			break;
 		
@@ -36,14 +36,29 @@ int main(void)
 		
 		case PLAY_GAME:
 			wager = get_wager_amount(balance);
+			
+			// Roll, display, and sum dice
 			die1 = roll_die();
-			die2 = roll_die();				//probably dont keep all this here
+			die2 = roll_die();			
 			display_dice(die1, die2);
 			sum_dice = calculate_sum_dice(die1, die2);
 			
-			
-			
-			
+			// Determine result of first roll, set point value if applicable, and adjust balance
+			if (is_win_loss_or_point(sum_dice) == 0)
+			{
+				balance = adjust_bank_balance(balance, wager, 0);
+				printf("\nYou lose. You now have $%.2lf.\n", balance);
+			}
+			if (is_win_loss_or_point(sum_dice) == -1)
+			{
+				point_value = sum_dice;
+				printf("\nYour point is now %d.\n", sum_dice);
+			}
+			if (is_win_loss_or_point(sum_dice) == 1)
+			{
+				balance = adjust_bank_balance(balance, wager, 1);
+				printf("\nYou win! You now have $%.2lf.\n", balance);
+			}
 			
 			
 			break;

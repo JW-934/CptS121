@@ -11,8 +11,8 @@
 void main_menu()
 {
 	// Menu Options
-	printf("1: Display Game Rules\n");
-	printf("2: Set Initial Bank Balance\n");
+	printf("\n1: Display Game Rules\n");
+	printf("2: Set Initial Bank Balance ($2000 is default)\n");
 	printf("3: Play Game\n");
 	printf("4: Exit\n");
 }
@@ -26,7 +26,7 @@ double get_game_balance()
 {
 	double balance;
 	
-	printf("Enter your bank balance: ");
+	printf("\nEnter your bank balance: ");
 	scanf("%lf", &balance);
 
 	return balance;
@@ -38,7 +38,7 @@ double get_wager_amount(double balance)
 	int enough_money;
 
 	do {
-		printf("Enter your wager amount (You have $%.2lf): ", balance);
+		printf("\nEnter your wager amount (You have $%.2lf): ", balance);
 		scanf("%lf", &wager);
 		enough_money = check_wager_amount(wager, balance);
 	} while (enough_money != 1);
@@ -66,7 +66,7 @@ int roll_die()
 
 void display_dice(int die1, int die2)
 {
-	printf("Die 1: %d\nDie 2: %d\n", die1, die2);
+	printf("\nDie 1: %d\nDie 2: %d\n", die1, die2);
 }
 
 int calculate_sum_dice(int die1_value, int die2_value)
@@ -151,7 +151,7 @@ int get_option()
 {
 	int selection;
 	// Prompt for selection
-	printf("Make your selection: ");
+	printf("\nMake your selection: ");
 	scanf("%d", &selection);
 	
 	return selection;
