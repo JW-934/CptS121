@@ -32,13 +32,17 @@ double get_game_balance()
 	return balance;
 }
 
-double get_wager_amount()
+double get_wager_amount(double balance)
 {
 	double wager;
+	int enough_money;
 
-	printf("Enter your wager amount: ");
-	scanf("%lf", &wager);
-
+	do {
+		printf("Enter your wager amount (You have $%.2lf): ", balance);
+		scanf("%lf", &wager);
+		enough_money = check_wager_amount(wager, balance);
+	} while (enough_money != 1);
+	
 	return wager;
 }
 
@@ -70,19 +74,59 @@ int calculate_sum_dice(int die1_value, int die2_value)
 	return die1_value + die2_value;
 }
 
+// Result of FIRST dice roll
 int is_win_loss_or_point(int sum_dice)
 {
+	int result;
 
+	if (sum_dice == 7 || sum_dice == 11)
+	{
+		result = 1;
+	}
+	if (sum_dice == 2 || sum_dice == 3 || sum_dice == 12)
+	{
+		result = 0;
+	}
+	if (sum_dice == 4 || sum_dice == 5 || sum_dice == 6 || sum_dice == 8 || sum_dice == 9 || sum_dice == 10)
+	{
+		result = -1;
+	}
+
+	return result;
 }
 
+// Result of SUBSEQUENT rolls
 int is_point_loss_or_neither(int sum_dice, int point_value) 
 {
-
+	int result;
+	
+	if (sum_dice == point_value)
+	{
+		result = 1;
+	}
+	if (sum_dice == 7)
+	{
+		result = 0;
+	}
+	else
+	{
+		result = -1;
+	}
+	return result;
 }
 
+// Adjusts balance by the wager amount depending on if the roll was a win or loss
 double adjust_bank_balance(double bank_balance, double wager_amount, int add_or_subtract)
 {
-
+	if (add_or_subtract == 1)
+	{
+		bank_balance = bank_balance + wager_amount;
+	}
+	if (add_or_subtract == 0)
+	{
+		bank_balance = bank_balance - wager_amount;
+	}
+	return bank_balance;
 }
 
 void chatter_messages(int number_rolls, int win_loss_neither, double initial_bank_balance, double current_bank_balance)
