@@ -1,0 +1,11 @@
+Passing variables in normally copies them in, while pointers direct the function to the actual place in memory.
+
+int result = divide(); copies the return value over but pointers circumvent this, no return statement needed.
+
+Having multiple output values cannot be done with return statements, pointers required.
+
+void* is a generic pointer, technically can be used with any type of pointer. (Not covered in this course)
+
+The contents of a pointer is an address.
+
+ptr_die1 copies the value of the pointer (NULL rn)
