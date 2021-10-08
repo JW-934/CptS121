@@ -9,3 +9,5 @@ void* is a generic pointer, technically can be used with any type of pointer. (N
 The contents of a pointer is an address.
 
 ptr_die1 copies the value of the pointer (NULL rn)
+
+Debugger very useful, use the watch tab for pointers and ambiguous variables
