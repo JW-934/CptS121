@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA4
-* Date: September 29, 2021, October 1, 2021, October 4, 2021
+* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021
 * Description: This program is a game of craps.
 */
 
@@ -10,7 +10,7 @@
 
 int main(void)
 {
-	int option, die1, die2, sum_dice, point_value;
+	int option, die1, die2, sum_dice, point_value = -1, win_loss = 0;;
 	double balance = 2000, wager;
 	
 	srand((unsigned int) time(NULL)); // seed rand, only call once in program
@@ -59,6 +59,43 @@ int main(void)
 				balance = adjust_bank_balance(balance, wager, 1);
 				printf("\nYou win! You now have $%.2lf.\n", balance);
 			}
+			
+			
+			// Pause then roll again
+			do
+			{
+				/*printf("To continue playing:");
+				system("pause");*/
+				
+				wager = get_wager_amount(balance);
+
+				die1 = roll_die();
+				die2 = roll_die();
+				display_dice(die1, die2);
+				sum_dice = calculate_sum_dice(die1, die2);
+
+				if (is_point_loss_or_neither(sum_dice, point_value) == 1)
+				{
+					balance = adjust_bank_balance(balance, wager, 1);
+					win_loss = 1;
+					printf("\nYou win the game! You rolled your point of %d.\n", point_value);
+				}
+
+				if (is_point_loss_or_neither(sum_dice, point_value) == 0)
+				{
+					balance = adjust_bank_balance(balance, wager, 0);
+					win_loss = -1;
+					printf("\nYou lose the game! You rolled 7.\n");
+				}
+
+				if (is_point_loss_or_neither(sum_dice, point_value) == -1)
+				{
+					balance = adjust_bank_balance(balance, wager, 0);
+					printf("\nYou lost this round! You didn't roll your point of %d.\n", point_value);
+				}
+			} while (win_loss == 0);
+			
+			printf("\nYour final balance was $%lf.\n", balance);
 			
 			
 			break;
