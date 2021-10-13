@@ -1,0 +1,16 @@
+Customer #: 12345
+Total charges: $45.86
+Average cost per hour: $7.99
+
+Customer #: 61341
+Total charges: $48.98
+Average cost per hour: $7.99
+
+Customer #: 64253
+Total charges: $82.89
+Average cost per hour: $7.21
+
+Customer #: 14535
+Total charges: $99.80
+Average cost per hour: $4.99
+
