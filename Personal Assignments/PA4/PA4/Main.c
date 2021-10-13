@@ -114,7 +114,13 @@ int main(void)
 				if (is_point_loss_or_neither(sum_dice, point_value) == -1)
 				{
 					balance = adjust_bank_balance(balance, wager, 0);
-					printf("\nYou lost this round! You didn't roll your point of %d.\n", point_value);
+					if (point_value != -1)
+					{
+						printf("\nYou lost this round! You didn't roll your point of %d.\n", point_value);
+					}
+					else {
+						printf("\nYou lost this round!\n");
+					}
 					chatter_messages(rolls, is_point_loss_or_neither(sum_dice, point_value), old_balance, balance, initial_balance);
 				}
 
