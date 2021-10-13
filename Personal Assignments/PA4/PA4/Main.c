@@ -11,7 +11,7 @@
 int main(void)
 {
 	int option, die1, die2, sum_dice, point_value = -1, win_loss = 0, rolls = 0;
-	double balance = 2000, old_balance = 2000, wager;
+	double balance = 2000, old_balance = 2000, initial_balance = 2000, wager;
 	
 	srand((unsigned int) time(NULL)); // seed rand, only call once in program
 
@@ -37,12 +37,18 @@ int main(void)
 		
 		case PLAY_GAME:
 			
+			initial_balance = balance;
 			old_balance = balance;
 			
 			printf("\nThis will be roll %d.\n", rolls = 1);
 
 			wager = get_wager_amount(balance);
 			
+			if (wager >= (0.5 * balance))
+			{
+				printf("\nIrresponsibility or confidence? Maybe both?\n");
+			}
+
 			// Roll, display, and sum dice
 			die1 = roll_die();
 			die2 = roll_die();			
@@ -54,7 +60,7 @@ int main(void)
 			if (is_win_loss_or_point(sum_dice) == 0)
 			{
 				balance = adjust_bank_balance(balance, wager, 0);
-				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance);
+				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance, initial_balance);
 				old_balance = balance;
 				//printf("\nYou lost. You now have $%.2lf.\n", balance);
 			}
@@ -67,7 +73,7 @@ int main(void)
 			if (is_win_loss_or_point(sum_dice) == 1)
 			{
 				balance = adjust_bank_balance(balance, wager, 1);
-				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance);
+				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance, initial_balance);
 				old_balance = balance;
 				//printf("\nYou won! You now have $%.2lf.\n", balance);
 			}
@@ -80,6 +86,11 @@ int main(void)
 				system("pause");*/
 				
 				wager = get_wager_amount(balance);
+
+				if (wager >= (0.5 * balance))
+				{
+					printf("\nIrresponsibility or confidence? Maybe both?\n");
+				}
 
 				die1 = roll_die();
 				die2 = roll_die();
@@ -104,7 +115,7 @@ int main(void)
 				{
 					balance = adjust_bank_balance(balance, wager, 0);
 					printf("\nYou lost this round! You didn't roll your point of %d.\n", point_value);
-					chatter_messages(rolls, is_point_loss_or_neither(sum_dice, point_value), old_balance, balance);
+					chatter_messages(rolls, is_point_loss_or_neither(sum_dice, point_value), old_balance, balance, initial_balance);
 				}
 
 				rolls += 1;

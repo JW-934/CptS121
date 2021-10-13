@@ -21,7 +21,7 @@
 void main_menu();
 void print_game_rules();
 void display_dice(int die1, int die2);
-void chatter_messages(int number_rolls, int win_loss_neither, double initial_bank_balance, double current_bank_balance);
+void chatter_messages(int number_rolls, int win_loss_neither, double old_bank_balance, double current_bank_balance, double initial_bank_balance);
 
 double get_game_balance();
 double get_wager_amount();

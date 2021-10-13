@@ -129,29 +129,47 @@ double adjust_bank_balance(double bank_balance, double wager_amount, int add_or_
 	return bank_balance;
 }
 
-void chatter_messages(int number_rolls, int win_loss_neither, double initial_bank_balance, double current_bank_balance)
+// Prints messages corresponding to the result of each roll
+void chatter_messages(int number_rolls, int win_loss_neither, double old_bank_balance, double current_bank_balance, double initial_bank_balance)
 {
 	double difference = 0;
 	
 	if (win_loss_neither == 0 || win_loss_neither == -1)
 	{
-		difference = abs(initial_bank_balance - current_bank_balance);
+		difference = abs(old_bank_balance - current_bank_balance);
 		printf("\nYou lost $%.2lf. You now have $%.2lf.\n", difference, current_bank_balance);
+	
+		if (difference == (0.5 * old_bank_balance))
+		{
+			printf("\nYour risky bet cost you big! But will it next time?\n");
+		}
 	}
 	
 	if (win_loss_neither == 1)
 	{ 
-		difference = abs(initial_bank_balance - current_bank_balance);
+		difference = abs(old_bank_balance - current_bank_balance);
 		printf("\nYou won $%.2lf! You now have $%.2lf.\n", difference, current_bank_balance);
-	}
-	
-	
-	
-	
-	printf("\nThis will be roll %d.\n", number_rolls + 1);
 
+		if (difference == (0.5 * old_bank_balance))
+		{
+			printf("\nYour risky bet paid off! This time.\n");
+		}
+	}
+
+	if (current_bank_balance <= (0.5 * initial_bank_balance))
+	{
+		printf("\nYou've cut your money in half! You must feel great.\n");
+	}
+
+	if (current_bank_balance >= (2 * initial_bank_balance))
+	{
+		printf("\nYou've doubled your money! Good luck keeping it.\n");
+	}
+
+	printf("\nThis will be roll %d.\n", number_rolls + 1);
 }
 
+// Prints menu and validates user choice
 int print_and_validate()
 {
 	int option;
@@ -165,6 +183,7 @@ int print_and_validate()
 	return option;
 }
 
+// Gets menu choice from user
 int get_option()
 {
 	int selection;
