@@ -15,10 +15,17 @@
 
 int main(void)
 {
-	int numbers[10] = {10, 1, 5, 7}, found = 0, target_index = 0; // indexes 4-9 set to 0
+	int numbers[10] = { 10, 1, 5, 7 }, found = 0, target_index = 0, list[] = {2, 4, 6, 9, 11};
 
 	found = sequential_search(&numbers[0], 4, 7, &target_index); // array names are pointers
 	found = sequential_search(&numbers[0], 4, 13, &target_index);
+
+	found = binary_search(list, 5, 11, &target_index); // array names are pointers (you can put in an array with name, or &name[0])
+	found = binary_search(&list[0], 5, 12, &target_index);
+
+
+
+
 
 	return 0;
 }

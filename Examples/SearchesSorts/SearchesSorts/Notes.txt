@@ -1,0 +1,4 @@
+Binary Search: starting in ascending order, set left and right indexes, find midpoint, take value at midpoint and compare it to the target.
+				if target is less than the midpoint we know it has to occur earlier in the list, move R index over so it does not compare
+				to every value. Move R to midpoint - 1. If target greater than midpoint, move L to midpoint + 1.
+				
