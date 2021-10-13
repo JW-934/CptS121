@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA4
-* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021
+* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021, October 12, 2021
 * Description: This program is a game of craps.
 */
 
@@ -131,6 +131,24 @@ double adjust_bank_balance(double bank_balance, double wager_amount, int add_or_
 
 void chatter_messages(int number_rolls, int win_loss_neither, double initial_bank_balance, double current_bank_balance)
 {
+	double difference = 0;
+	
+	if (win_loss_neither == 0 || win_loss_neither == -1)
+	{
+		difference = abs(initial_bank_balance - current_bank_balance);
+		printf("\nYou lost $%.2lf. You now have $%.2lf.\n", difference, current_bank_balance);
+	}
+	
+	if (win_loss_neither == 1)
+	{ 
+		difference = abs(initial_bank_balance - current_bank_balance);
+		printf("\nYou won $%.2lf! You now have $%.2lf.\n", difference, current_bank_balance);
+	}
+	
+	
+	
+	
+	printf("\nThis will be roll %d.\n", number_rolls + 1);
 
 }
 

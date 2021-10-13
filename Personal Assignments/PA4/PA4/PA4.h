@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA4
-* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021
+* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021, October 12, 2021
 * Description: This program is a game of craps.
 */
 

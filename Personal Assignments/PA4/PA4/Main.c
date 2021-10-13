@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA4
-* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021
+* Date: September 29, 2021, October 1, 2021, October 4, 2021, October 11, 2021, October 12, 2021
 * Description: This program is a game of craps.
 */
 
@@ -10,8 +10,8 @@
 
 int main(void)
 {
-	int option, die1, die2, sum_dice, point_value = -1, win_loss = 0;;
-	double balance = 2000, wager;
+	int option, die1, die2, sum_dice, point_value = -1, win_loss = 0, rolls = 0;
+	double balance = 2000, old_balance = 2000, wager;
 	
 	srand((unsigned int) time(NULL)); // seed rand, only call once in program
 
@@ -31,15 +31,22 @@ int main(void)
 		
 		case SET_BALANCE:
 			balance = get_game_balance();
+			
 			break;
 		
 		
 		case PLAY_GAME:
+			
+			old_balance = balance;
+			
+			printf("\nThis will be roll %d.\n", rolls = 1);
+
 			wager = get_wager_amount(balance);
 			
 			// Roll, display, and sum dice
 			die1 = roll_die();
 			die2 = roll_die();			
+			rolls = 1;
 			display_dice(die1, die2);
 			sum_dice = calculate_sum_dice(die1, die2);
 			
@@ -47,19 +54,24 @@ int main(void)
 			if (is_win_loss_or_point(sum_dice) == 0)
 			{
 				balance = adjust_bank_balance(balance, wager, 0);
-				printf("\nYou lose. You now have $%.2lf.\n", balance);
+				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance);
+				old_balance = balance;
+				//printf("\nYou lost. You now have $%.2lf.\n", balance);
 			}
 			if (is_win_loss_or_point(sum_dice) == -1)
 			{
 				point_value = sum_dice;
 				printf("\nYour point is now %d.\n", sum_dice);
+				printf("\nThis will be roll %d.\n", rolls + 1);
 			}
 			if (is_win_loss_or_point(sum_dice) == 1)
 			{
 				balance = adjust_bank_balance(balance, wager, 1);
-				printf("\nYou win! You now have $%.2lf.\n", balance);
+				chatter_messages(rolls, is_win_loss_or_point(sum_dice), old_balance, balance);
+				old_balance = balance;
+				//printf("\nYou won! You now have $%.2lf.\n", balance);
 			}
-			
+			rolls = 1;
 			
 			// Pause then roll again
 			do
@@ -92,14 +104,15 @@ int main(void)
 				{
 					balance = adjust_bank_balance(balance, wager, 0);
 					printf("\nYou lost this round! You didn't roll your point of %d.\n", point_value);
+					chatter_messages(rolls, is_point_loss_or_neither(sum_dice, point_value), old_balance, balance);
 				}
+
+				rolls += 1;
 			} while (win_loss == 0);
 			
-			printf("\nYour final balance was $%lf.\n", balance);
-			
+			printf("\nYour final balance was $%.2lf.\n", balance);
 			
 			break;
-		
 		
 		case EXIT:
 			break;
