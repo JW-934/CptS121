@@ -51,3 +51,33 @@ int binary_search(int list[], int size, int target, int* target_index_ptr)
 	
 	}
 }
+
+// ascending order placement of numbers in array.
+//
+
+int* bubble_sort(int list[], int size)
+{
+	int temp = 0, passes = 0, index = 0;
+
+	// recall we need to make size - 1 passes
+	// through the array to guarantee all numbers
+	// are in the correct order.
+	for (; passes < size - 1; ++passes) // number of passes through array controlled by the outer loop
+	{
+		for (index = 0; index < size - passes - 1;
+			++index) // swapping - walking through the array controlled by inner loop
+		{
+			// check to see if number at index
+			// is greater than its right adjacent cell.
+			if (list[index] > list[index + 1])
+			{
+				// we need to swap
+				temp = list[index];
+				list[index] = list[index + 1];
+				list[index + 1] = temp;
+			}
+		}
+	}
+
+	return list; // return a pointer to the ordered array
+}
