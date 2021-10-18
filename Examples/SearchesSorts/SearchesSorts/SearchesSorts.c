@@ -81,3 +81,30 @@ int* bubble_sort(int list[], int size)
 
 	return list; // return a pointer to the ordered array
 }
+
+int* selection_sort(int list[], int size)
+{
+	int max_index = 0, index = 0, temp = 0, passes = 1;
+
+	while (passes < size) // controls number of passes
+	{
+		index = 1;
+		max_index = 0;
+
+		while (index <= size - passes) // walking through the array
+		{
+			// trying to find max
+			if (list[max_index] < list[index])
+			{
+				// found a new max
+				max_index = index;
+			}
+
+			++index;
+		} // end of inner loop
+
+		//swap
+		temp = list[max_index];
+		list[max_index] = list[size - passes];
+	} // end of outer loop
+}
