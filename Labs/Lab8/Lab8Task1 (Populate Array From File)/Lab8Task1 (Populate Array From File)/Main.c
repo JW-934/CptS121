@@ -57,8 +57,8 @@ int main(void)
 
 		--k;
 	}
-	printf("%d", list[0]);
-	printf("%d", list[1]);
+	printf("%d", list[0]);	// The debugger shows that the array is reversed at this point but 
+	printf("%d", list[1]);	// these print statements still show the original order.
 	printf("%d", list[2]);
 	printf("%d", list[3]);
 	printf("%d", list[4]);
