@@ -14,7 +14,7 @@ int main(void)
 	int word_length, inc_guesses = 0, cor_guesses = 0, win_loss = 0;
 
 	printf("Enter the word to be guessed: ");
-	gets(word);
+	gets(word); // I don't know how to get a user inputted word into an array without treating it as a string.
 
 	printf("Enter the length of the word: ");
 	scanf("%d", &word_length);
@@ -25,6 +25,7 @@ int main(void)
 	{
 		for (int i = 0; i < 15 && win_loss == 0; ++i)
 		{
+			printf("**********You get 6 guesses, good luck.**********");
 			printf("Enter a letter to guess: ");
 			scanf(" %c", &guess);
 			
