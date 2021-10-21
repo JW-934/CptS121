@@ -48,7 +48,7 @@ int main(void)
 	// Reverses the values in the array
 	k = numbers - 1; // Set to position of last value in array
 
-	for (int j = 0; j < numbers; ++j)
+	for (int j = 0; j < numbers / 2; ++j)
 	{
 		temp = list[j];
 		
