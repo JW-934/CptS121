@@ -26,6 +26,41 @@ void display_dice(int die1, int die2, int die3, int die4, int die5)
 	printf("\nDie 1: %d\nDie 2: %d\nDie 3: %d\nDie 4: %d\nDie 5: %d\n", die1, die2, die3, die4, die5);
 }
 
+int* occurance_ary(int d1, int d2, int d3, int d4, int d5)
+{
+	int dice[] = { d1, d2, d3, d4, d5 }, result = 0, occurances[] = { 0,0,0,0,0,0 };
+
+	// Count the occurances of each number in the roll
+	for (int i = 0; i < 5; ++i)
+	{
+		if (dice[i] == 1)
+		{
+			++occurances[0];
+		}
+		if (dice[i] == 2)
+		{
+			++occurances[1];
+		}
+		if (dice[i] == 3)
+		{
+			++occurances[2];
+		}
+		if (dice[i] == 4)
+		{
+			++occurances[3];
+		}
+		if (dice[i] == 5)
+		{
+			++occurances[4];
+		}
+		if (dice[i] == 6)
+		{
+			++occurances[5];
+		}
+	}
+	return occurances;
+}
+
 int print_and_validate()
 {
 	int option;
@@ -58,7 +93,7 @@ int get_option()
 // Checks if the roll is a three of a kind
 int is_3_of_kind(int d1, int d2, int d3, int d4, int d5)
 {
-	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0 }, result = 0;
+	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0,0 }, result = 0;
 	
 	// Count the occurances of each number in the roll
 	for (int i = 0; i < 5; ++i)
@@ -83,10 +118,14 @@ int is_3_of_kind(int d1, int d2, int d3, int d4, int d5)
 		{
 			++occurances[4];
 		}
+		if (dice[i] == 6)
+		{
+			++occurances[5];
+		}
 	}
 	
 	// Check if any numbers occur at least three times
-	for (int j = 0; j < 5; ++j)
+	for (int j = 0; j < 6; ++j)
 	{
 		if (occurances[j] >= 3)
 		{
@@ -99,7 +138,7 @@ int is_3_of_kind(int d1, int d2, int d3, int d4, int d5)
 // Checks if the roll is a four of a kind
 int is_4_of_kind(int d1, int d2, int d3, int d4, int d5)
 {
-	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0 }, result = 0;
+	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0,0 }, result = 0;
 
 	// Count the occurances of each number in the roll
 	for (int i = 0; i < 5; ++i)
@@ -124,10 +163,14 @@ int is_4_of_kind(int d1, int d2, int d3, int d4, int d5)
 		{
 			++occurances[4];
 		}
+		if (dice[i] == 6)
+		{
+			++occurances[5];
+		}
 	}
 
 	// Check if any numbers occur at least four times
-	for (int j = 0; j < 5; ++j)
+	for (int j = 0; j < 6; ++j)
 	{
 		if (occurances[j] >= 4)
 		{
@@ -140,7 +183,7 @@ int is_4_of_kind(int d1, int d2, int d3, int d4, int d5)
 // Checks if the roll is a pair
 int is_pair(int d1, int d2, int d3, int d4, int d5)
 {
-	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0 }, result = 0;
+	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0,0 }, result = 0;
 
 	// Count the occurances of each number in the roll
 	for (int i = 0; i < 5; ++i)
@@ -165,10 +208,14 @@ int is_pair(int d1, int d2, int d3, int d4, int d5)
 		{
 			++occurances[4];
 		}
+		if (dice[i] == 6)
+		{
+			++occurances[5];
+		}
 	}
 
 	// Check if any numbers occur 2 times
-	for (int j = 0; j < 5; ++j)
+	for (int j = 0; j < 6; ++j)
 	{
 		if (occurances[j] == 2)
 		{
@@ -178,6 +225,7 @@ int is_pair(int d1, int d2, int d3, int d4, int d5)
 	return result;
 }
 
+// Checks if the roll is a full house
 int is_full_house(int d1, int d2, int d3, int d4, int d5)
 {
 	int three_kind = is_3_of_kind(d1, d2, d3, d4, d5), pair = is_pair(d1, d2, d3, d4, d5), result = 0;
@@ -185,6 +233,51 @@ int is_full_house(int d1, int d2, int d3, int d4, int d5)
 	if (three_kind == 1 && pair == 1)
 	{
 		result = 1;
+	}
+	return result;
+}
+
+// Checks if the roll is a yahtzee
+int is_yahtzee(int d1, int d2, int d3, int d4, int d5)
+{
+	int dice[] = { d1, d2, d3, d4, d5 }, occurances[] = { 0,0,0,0,0,0 }, result = 0;
+
+	// Count the occurances of each number in the roll
+	for (int i = 0; i < 5; ++i)
+	{
+		if (dice[i] == 1)
+		{
+			++occurances[0];
+		}
+		if (dice[i] == 2)
+		{
+			++occurances[1];
+		}
+		if (dice[i] == 3)
+		{
+			++occurances[2];
+		}
+		if (dice[i] == 4)
+		{
+			++occurances[3];
+		}
+		if (dice[i] == 5)
+		{
+			++occurances[4];
+		}
+		if (dice[i] == 6)
+		{
+			++occurances[5];
+		}
+	}
+
+	// Check if any numbers occur five times
+	for (int j = 0; j < 6; ++j)
+	{
+		if (occurances[j] == 5)
+		{
+			result = 1;
+		}
 	}
 	return result;
 }
