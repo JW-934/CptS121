@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA5
-* Date: October 18, 2021, October 21, 2021
+* Date: October 18, 2021, October 21, 2021, October 23, 2021
 * Description: This program is Yahtzee.
 */
 
@@ -10,7 +10,8 @@
 
 int main(void)
 {
-	int option, d1, d2, d3, d4, d5, rolls = 0, combination;
+	int option, d1, d2, d3, d4, d5, p1_rolls = 0, p2_rolls = 0, p1_points = 0, p2_points = 0, combination, round = 1;
+ 
 	char yes_no;
 	
 	srand((unsigned int)time(NULL));
@@ -29,6 +30,8 @@ int main(void)
 			print_rules();
 			break;
 		case 2: // Play Game
+			
+			// Player 1
 			printf("Player 1, it is your turn. ");
 			system("pause");
 
@@ -38,11 +41,12 @@ int main(void)
 			d4 = roll_die();
 			d5 = roll_die();
 
-			++rolls;
+			++p1_rolls;
 
 			display_dice(d1, d2, d3, d4, d5);
 
-			if (rolls < 3)
+			// Prompt for combination
+			if (p1_rolls < 3)
 			{
 				printf("\nWould you like to use this roll for one of the following combinations (y/n)?\n");
 				printf("1. Sum of 1's        7. Three-of-a-kind\n");
@@ -58,6 +62,13 @@ int main(void)
 				{
 					printf("Which one? >");
 					scanf(" %d", &combination);
+
+
+
+
+
+
+
 				}
 			}
 
