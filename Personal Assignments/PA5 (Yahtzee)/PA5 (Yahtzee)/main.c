@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA5
-* Date: October 18, 2021, October 21, 2021, October 23, 2021
+* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021
 * Description: This program is Yahtzee.
 */
 
@@ -11,7 +11,7 @@
 int main(void)
 {
 	int option, d1, d2, d3, d4, d5, p1_rolls = 0, p2_rolls = 0, p1_points = 0, p2_points = 0, combination,
-		round = 1, sum = 0, dice_sum;
+		round = 1, sum = 0, dice_sum, reroll_dice;
  
 	char yes_no;
 	
@@ -46,6 +46,19 @@ int main(void)
 
 			++p1_rolls;
 
+			int dice[] = { d1, d2, d3, d4, d5 }, result = 0, occurances[] = { 0,0,0,0,0,0 };
+
+			int* occurances_ptr = NULL;
+			int* dice_ptr = NULL;
+
+			// Populates occurance array
+			occurances_ptr = occurance_ary(d1, d2, d3, d4, d5, occurances);
+			// Sorts dice array in ascending order
+			dice_ptr = bubble_sort(dice, 5);
+
+			//printf("%d, %d, %d", occurances_ptr[0], occurances_ptr[1], occurances_ptr[2]);
+			//printf("%d, %d, %d", dice_ptr[0], dice_ptr[1], dice_ptr[2]);
+
 			display_dice(d1, d2, d3, d4, d5);
 
 			// Prompt for combination
@@ -61,18 +74,11 @@ int main(void)
 				printf("            13. Chance\n");
 				printf(">");
 				scanf(" %c", &yes_no);
+
 				if (yes_no == 'y' || yes_no == 'Y')
 				{
 					printf("Which one (1-13)? >");
 					scanf(" %d", &combination);
-
-					int dice[] = { d1, d2, d3, d4, d5 }, result = 0, occurances[] = { 0,0,0,0,0,0 };
-
-					int* occurances_ptr = NULL;
-
-					occurances_ptr = occurance_ary(d1, d2, d3, d4, d5, occurances);
-
-					//printf("%d, %d, %d", occurances_ptr[0], occurances_ptr[1], occurances_ptr[2]);
 
 					// Die sums
 					if (combination == 1)
@@ -115,7 +121,7 @@ int main(void)
 					// Three of a kind
 					if (combination == 7)
 					{
-						if (is_3_of_kind(d1, d2, d3, d4, d5, occurances) == 1)
+						if (is_3_of_kind(occurances_ptr) == 1)
 						{
 							p1_points = p1_points + dice_sum;
 							printf("\nYou have a three of a kind! You get %d points.\n", &dice_sum);
@@ -129,7 +135,7 @@ int main(void)
 					// Four of a kind
 					if (combination == 8)
 					{
-						if (is_4_of_kind(d1, d2, d3, d4, d5, occurances) == 1)
+						if (is_4_of_kind(occurances_ptr) == 1)
 						{
 							p1_points = p1_points + dice_sum;
 							printf("\nYou have a four of a kind! You get %d points.\n", &dice_sum);
@@ -143,25 +149,49 @@ int main(void)
 					// Full house
 					if (combination == 9)
 					{
-
+						if (is_full_house(dice_ptr) == 1)
+						{
+							p1_points = p1_points + 25;
+							printf("\nYou have a full house! You get 25 points.\n");
+						}
+						else
+						{
+							printf("\nYou do not have a full house! You get 0 points.\n");
+						}
 					}
 					
 					// Small straight
 					if (combination == 10)
 					{
-
+						if (is_small_straight(dice_ptr) == 1)
+						{
+							p1_points = p1_points + 30;
+							printf("\nYou have a small straight! You get 30 points.\n");
+						}
+						else
+						{
+							printf("\nYou do not have a small straight! You get 0 points.\n");
+						}
 					}
 					
 					// Large straight
 					if (combination == 11)
 					{
-
+						if (is_large_straight(dice_ptr) == 1)
+						{
+							p1_points = p1_points + 40;
+							printf("\nYou have a large straight! You get 40 points.\n");
+						}
+						else
+						{
+							printf("\nYou do not have a large straight! You get 0 points.\n");
+						}
 					}
 					
 					// Yahtzee
 					if (combination == 12)
 					{
-						if (is_yahtzee(d1, d2, d3, d4, d5, occurances) == 1)
+						if (is_yahtzee(occurances_ptr) == 1)
 						{
 							p1_points = p1_points + 50;
 							printf("\nYou have a yahtzee! You get 50 points.\n");
@@ -180,6 +210,13 @@ int main(void)
 					}
 
 
+
+
+				}
+				else if (yes_no == 'n' || yes_no == 'N')///////////////////////////////////////////////////////////////
+				{
+					printf("How many dice would you like to reroll (1-5)?\n>");
+					scanf(" %d", &reroll_dice);
 
 
 				}
