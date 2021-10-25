@@ -65,6 +65,7 @@ int main(void)
 
 	// strcmp ()
 	// if (str == str2) won't work, use strcmp()
+	printf("strcmp (cat, do): %d\n", strcmp("cat", "do"));
 
 	/*system("pause");
 	system("cls");*/
