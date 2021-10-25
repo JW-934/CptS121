@@ -1,20 +1,3 @@
-//#ifndef SEARCHES_AND_SORTS_H
-//#define SEARCHES_AND_SORTS_H
-//
-//#define _CRT_SECURE_NO_WARNINGS
-//
-//#include <stdio.h>
-//
-//int sequential_search(int list[], int size, int target, int* target_index_ptr);
-//
-//// Precondition: number list must be in ascending order (small to large)
-//int binary_search(int list[], int size, int target, int* target_index_ptr);
-//
-//int* bubble_sort(int list[], int size);
-//
-//int* selection_sort(int list[], int size);
-//#endif
-
 #ifndef SEARCHES_AND_SORTS_H
 #define SEARCHES_AND_SORTS_H
 
@@ -22,6 +5,9 @@
 
 #include <stdio.h>
 #include <string.h>
+
+#define MAX_ROWS 3
+#define MAX_COLS 5
 
 int sequential_search(int list[], int size, int target,
 	int* target_index_ptr);
@@ -33,6 +19,15 @@ int binary_search(int list[], int size, int target,
 
 // ascending order
 int* bubble_sort(int list[], int size);
-int* selection_sort(int list[], int size);
+int * selection_sort(int list[], int size);
+
+void init_2D_array(char lists[][MAX_COLS], int num_rows,
+	int num_cols);
+
+char* my_strcat(char* dest_ptr, const char* src_ptr); // from the functions perspective any src ptr is immutable even if it is not constant
+
+
+
+
 
 #endif
