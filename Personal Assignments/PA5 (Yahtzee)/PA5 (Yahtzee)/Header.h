@@ -30,3 +30,6 @@ int is_full_house(int* dice);
 int is_yahtzee(int* occurances);
 int is_small_straight(int* dice);
 int is_large_straight(int* dice);
+int apply_combination(int combination, int points, int* occurances_ptr, int dice_sum, int* dice_ptr, int* upper_ptr);
+
+char combo_prompt();
