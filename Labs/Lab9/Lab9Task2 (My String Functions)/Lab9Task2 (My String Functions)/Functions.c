@@ -38,9 +38,13 @@ int my_strcmp(const char* s1, const char* s2)
 	{
 		for (int i = 0; i < length1; ++i) // Checks if all chars are identical
 		{
-			if (s1[i] != s2[i])
+			if (s1[i] < s2[i]) //s1 before s2
 			{
-				return -2;
+				return -1;
+			}
+			else if (s1[i] > s2[i])// s1 after s2
+			{
+				return 1;
 			}
 		}
 		return 0;
