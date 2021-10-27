@@ -10,7 +10,6 @@
 
 int main(void)
 {
-	
 	// a. //////////////////////////////////////////////////////////
 	char string[] = "Test string";
 	
@@ -22,8 +21,6 @@ int main(void)
 	puts(str);
 
 	// b. /////////////////////////////////////////////////////////
-
-
 	char string2[] = "Test string 2";
 
 	char* str2 = string2;

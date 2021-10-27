@@ -13,14 +13,9 @@
 #include <stdio.h>
 #include <math.h>
 
-char* string_reverse(char* str);
-char* str_rev_arithmetic(char* str);
-
 int my_strlen(char* str);
 
-
-
-
-
+char* string_reverse(char* str);
+char* str_rev_arithmetic(char* str);
 
 #endif
