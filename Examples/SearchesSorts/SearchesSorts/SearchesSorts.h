@@ -19,15 +19,16 @@ int binary_search(int list[], int size, int target,
 
 // ascending order
 int* bubble_sort(int list[], int size);
-int * selection_sort(int list[], int size);
+int* selection_sort(int list[], int size);
 
 void init_2D_array(char lists[][MAX_COLS], int num_rows,
 	int num_cols);
 
-char* my_strcat(char* dest_ptr, const char* src_ptr); // from the functions perspective any src ptr is immutable even if it is not constant
+// will be similar to the actual strcat () in <string.h>
+char* my_strcat(char* dest_ptr, const char* src_ptr);
 
-
-
+// will be similar to the actual strcat () in <string.h>
+char* my_strcat_ptr_arithmetic(char* dest_ptr, const char* src_ptr);
 
 
 #endif

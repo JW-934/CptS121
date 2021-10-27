@@ -1,6 +1,22 @@
 // We are practicing with arrays.
 
-// History: 10/22 - We discussed 2-D arrays. 2-D arrays
+// History: 10/27 - Implemented my_strcat_ptr_arithmetic ()
+//                  which strictly uses pointer arithmetic
+//                  to perform a string concatenation. We
+//                  started discussing structs. We defined
+//                  a struct rectangle and discussed how
+//                  change the name of the struct type (typedef_
+//                  and initialize a struct. We also
+//                  learned about the dot member operator (.)
+//                  that's used to access fields/members
+//                  in the struct
+//          10/25 - We implemented our own version
+//                  of strcat () called my_strcat ().
+//                  strcat () appends one string to
+//                  the end of another string.
+//                  We also applied strlen () and strcmp ()
+//                  from <string.h>. Discussed fputs ().
+//          10/22 - We discussed 2-D arrays. 2-D arrays
 //                  are represented logically by
 //                  rows and columns!
 //          10/20 - We started discussing strings. We
@@ -39,90 +55,106 @@
 //                  discussing another algorith called binary
 //                  search.
 
-#include "SearchesSorts.h"
+//#include "SearchesSorts.h"
+#include "Structs.h"
 
 int main(void)
 {
-	int numbers[10] = { 5, 10, 1, 7, -1, 16, 8, 7 },
-		found = 0, 
-		target_index = 0, list[] = {2, 4, 6, 9, 11};
+	struct rectangle r1 = { 0.0, 0.0 };
+	Rectangle r2 = { 1.0, 1.0 };
 
-	// this is a 2-D array
-	char strs[MAX_ROWS][MAX_COLS] = { {'a', 'b', 'c'}, 
-	{'d', 'e'} };
+	printf("r1 length: %lf\n", r1.length);
+	printf("r1 width: %lf\n", r1.width);
 
-	init_2D_array(strs, MAX_ROWS, MAX_COLS);
-
-	char str[25] = {'s', 't', 'r', 'i', 'n', 'g', '\0'}; // can modify contents of string
-	char str2[] = "string2"; // can modify contents of string
-	const char* str3 = "string3"; // characters are in immutable memory - can't be changed // address can be changed just not the values
-
-	str3 = my_strcat(str, str3); 
-	puts(str3); //automatically adds a newline
-	fputs(str, stdout); // stdout is the screen // fputs does not add a newline
-
-	printf("\nstrlen (str): %d\n", strlen(str)); // strlen counts all characters besides \0
-
-	// strcmp ()
-	// if (str == str2) won't work, use strcmp()
-	printf("strcmp (cat, do): %d\n", strcmp("cat", "do"));
-
-	/*system("pause");
-	system("cls");*/
-
-	//str = "new string";
-	strcpy(str, "new string"); // arr = arr2;
-	puts(str);
-	// strncpy () copies exactly n number of characters
-	// from source string to destination string.
-	strncpy(str, "cat", 4); // str can contain 15 characters max
-	puts(&str[4]);
-
-	printf("str: %s\n", str);
-	printf("str: %s\n", str2);
-	str[3] = 'o';
-	printf("str: %s\n", str);
-	printf("str3: %s\n", str3);
-	printf("str3[2]: %c\n", str3[2]);
-//	str3[3] = 'o'; // can't change character because immutable memory
-
-	puts(str3);
-	puts("Enter a string: ");
-	//scanf("%s", str); // scanf () stops at whitespace with %s
-	// grab an entire line or string with whitespaces
-	//gets(str); // unsafe - can run beyond end of array
-	fgets(str, 10, stdin); // reads at most 10 - 1 characters from the keyboard;
-	                       // allows for the '\0' to be entered at the end of the sequence.
-	puts(str); // display a string to the screen
-
-
-	// read right to left - ptr is a variable
-	// that contains a constant address (the address
-	// can't be modified) to an integer (the integer
-	// can be modified)!
-	int * const ptr = numbers; // similar to what the
-	                           // name of an array provides
-
-	int* sort_ptr = NULL;
-
-	//found = sequential_search(&numbers[0], 4, 7, &target_index);
-	//found = sequential_search(&numbers[0], 4, 12, &target_index);
-
-	//found = binary_search(list, 5, 11, &target_index);
-	//found = binary_search(list, 5, 12, &target_index);
-
-	// our version of bubble sort places the numbers
-	// in the array in ascending order.
-	// bubble sort returns a pointer to the sorted
-	// array. however, we've not assigned a variable to 
-	// it yet. we'll do this on Monday, 10/18.
-	//numbers = bubble_sort(numbers, 8);
-	//ptr = bubble_sort(numbers, 8);
-	//sort_ptr = bubble_sort(numbers, 8);
-	//printf("sort_ptr[2]: %d\n", sort_ptr[2]);
-	//printf("numbers[2]: %d\n", numbers[2]);
-
-	sort_ptr = selection_sort(numbers, 8);
-
+	//	int numbers[10] = { 5, 10, 1, 7, -1, 16, 8, 7 },
+	//		found = 0, 
+	//		target_index = 0, list[] = {2, 4, 6, 9, 11};
+	//
+	//	// this is a 2-D array
+	//	char strs[MAX_ROWS][MAX_COLS] = { {'a', 'b', 'c'}, 
+	//	{'d', 'e'} };
+	//
+	//	init_2D_array(strs, MAX_ROWS, MAX_COLS);
+	//
+	//	char str[25] = { 's', 't', 'r', 'i', 'n', 'g', '\0' }; // can modify contents of string
+	//	char str2[] = "string2"; // can modify contents of string
+	//	const char* str3 = "string3"; // characters are in immutable memory - can't be changed
+	//	char* c_ptr = "a";
+	//
+	//
+	//	//str3 = my_strcat(&str[0], str3);
+	//	str3 = my_strcat_ptr_arithmetic(str, str3);
+	//	puts(str3); // should print same string as below
+	//	fputs(str, stdout); // should print same as above
+	//
+	//	printf("\nstrlen str: %d\n", strlen(str));
+	//
+	//	// strcmp ()
+	//	// if (str == str2), (str > str2)
+	//	// strcmp () performs character-by-character ASCII
+	//	// comparisons!!!
+	//	printf("strcmp (cat, do): %d\n",
+	//		strcmp("cat", "do")); // should return < 0 or -1
+	//	printf("strcmp (do, cat): %d\n",
+	//		strcmp("do", "cat")); // should return > 0 or 1
+	//	printf("strcmp (cat, cat): %d\n",
+	//		strcmp("cat", "cat")); // should return 0
+	//	/*system("pause");
+	//	system("cls");*/
+	//
+	//	//str = "new string";
+	//	strcpy(str, "new string"); // arr = arr2;
+	//	puts(str);
+	//	// strncpy () copies exactly n number of characters
+	//	// from source string to destination string.
+	//	strncpy(str, "cat", 4); // str can contain 15 characters max
+	//	puts(&str[4]);
+	//
+	//	printf("str: %s\n", str);
+	//	printf("str: %s\n", str2);
+	//	str[3] = 'o';
+	//	printf("str: %s\n", str);
+	//	printf("str3: %s\n", str3);
+	//	printf("str3[2]: %c\n", str3[2]);
+	////	str3[3] = 'o'; // can't change character because immutable memory
+	//
+	//	puts(str3);
+	//	puts("Enter a string: ");
+	//	//scanf("%s", str); // scanf () stops at whitespace with %s
+	//	// grab an entire line or string with whitespaces
+	//	//gets(str); // unsafe - can run beyond end of array
+	//	fgets(str, 10, stdin); // reads at most 10 - 1 characters from the keyboard;
+	//	                       // allows for the '\0' to be entered at the end of the sequence.
+	//	puts(str); // display a string to the screen
+	//
+	//
+	//	// read right to left - ptr is a variable
+	//	// that contains a constant address (the address
+	//	// can't be modified) to an integer (the integer
+	//	// can be modified)!
+	//	int * const ptr = numbers; // similar to what the
+	//	                           // name of an array provides
+	//
+	//	int* sort_ptr = NULL;
+	//
+	//	//found = sequential_search(&numbers[0], 4, 7, &target_index);
+	//	//found = sequential_search(&numbers[0], 4, 12, &target_index);
+	//
+	//	//found = binary_search(list, 5, 11, &target_index);
+	//	//found = binary_search(list, 5, 12, &target_index);
+	//
+	//	// our version of bubble sort places the numbers
+	//	// in the array in ascending order.
+	//	// bubble sort returns a pointer to the sorted
+	//	// array. however, we've not assigned a variable to 
+	//	// it yet. we'll do this on Monday, 10/18.
+	//	//numbers = bubble_sort(numbers, 8);
+	//	//ptr = bubble_sort(numbers, 8);
+	//	//sort_ptr = bubble_sort(numbers, 8);
+	//	//printf("sort_ptr[2]: %d\n", sort_ptr[2]);
+	//	//printf("numbers[2]: %d\n", numbers[2]);
+	//
+	//	sort_ptr = selection_sort(numbers, 8);
+	//
 	return 0;
 }

@@ -5,18 +5,18 @@ int sequential_search(int list[], int size, int target,
 {
 	int index = 0, found = 0;
 
-* target_index_ptr = -1; // invalid index
+	*target_index_ptr = -1; // invalid index
 
-for (index = 0, found = 0; index < size && !found; ++index)
-{
-	if (target == list[index])
+	for (index = 0, found = 0; index < size && !found; ++index)
 	{
-		found = 1;
-		*target_index_ptr = index;
+		if (target == list[index])
+		{
+			found = 1;
+			*target_index_ptr = index;
+		}
 	}
-}
 
-return found;
+	return found;
 }
 
 // precondition: list must be in ascending or smallest to largest
@@ -143,17 +143,45 @@ void init_2D_array(char lists[][MAX_COLS], int num_rows,
 
 char* my_strcat(char* dest_ptr, const char* src_ptr)
 {
-	int src_index = 0, dest_index = 0;
+	int dest_index = 0, src_index = 0;
 
-	// loop to find end of destination string
-	for (; dest_ptr[dest_index] != '\0'; ++dest_index); // semicolon here because no body, all work done by conditional expression
+	// find the end of the end of the destination string
+	for (; dest_ptr[dest_index] != '\0'; ++dest_index);
 
-	// appending of characters from src to dest
-	for (; src_ptr[src_index] != '\0'; ++src_index, ++dest_index) // looking for the null character of the source string (also can have multiple updates)
+	// we have the end of the destination string
+	for (; src_ptr[src_index] != '\0'; ++src_index,
+		++dest_index)
 	{
-		dest_ptr[dest_index] = src_ptr[src_index]; // not off by one, starting at null char of the dest string
+		// copy the current char in src to dest
+		dest_ptr[dest_index] = src_ptr[src_index];
 	}
-	dest_ptr[dest_index] = '\0'; // Loop stops when it sees the \0
+
+	// we should copy null character to end of dest
+	dest_ptr[dest_index] = '\0';
+
+	return dest_ptr;
+}
+
+
+// will be similar to the actual strcat () in <string.h>
+// please compare this solution to the above my_stract
+// using strictly array notation
+char* my_strcat_ptr_arithmetic(char* dest_ptr,
+	const char* src_ptr)
+{
+	int dest_index = 0, src_index = 0;
+
+	// find the end of dest str
+	for (; *(dest_ptr + dest_index) != '\0'; ++dest_index);
+
+	// found the end of dest str
+	for (; *(src_ptr + src_index) != '\0'; ++src_index,
+		++dest_index)
+	{
+		*(dest_ptr + dest_index) = *(src_ptr + src_index);
+	}
+
+	*(dest_ptr + dest_index) = '\0';
 
 	return dest_ptr;
 }
