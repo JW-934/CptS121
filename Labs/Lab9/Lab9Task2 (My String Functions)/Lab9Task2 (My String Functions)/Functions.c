@@ -26,20 +26,24 @@ int my_strcmp(const char* s1, const char* s2)
 	length1 = my_strlen(s1);
 	length2 = my_strlen(s2);
 
-	if (length1 != length2)
+	if (s1[0] < s2[0]) //s1 before s2
 	{
-		return 0;
+		return -1;
+	}
+	else if (s1[0] > s2[0])// s1 after s2
+	{
+		return 1;
 	}
 	else
 	{
-		for (int i = 0; i < length1; ++i)
+		for (int i = 0; i < length1; ++i) // Checks if all chars are identical
 		{
 			if (s1[i] != s2[i])
 			{
-				return 0;
+				return -2;
 			}
 		}
-		return 1;
+		return 0;
 	}
 }
 

@@ -11,15 +11,17 @@
 int main(void)
 {
 	// my_strcmp test ///////////////////////////////////////////////////////////
-	char string[] = "Test string", string2[] = "Test string", string3[] = "Not same";
+	char string[] = "B", string2[] = "C", string3[] = "A", string4[] = "B";
 
-	char* str = string, * str2 = string2, * str3 = string3;
+	char* str = string, * str2 = string2, * str3 = string3, * str4 = string4;
 
 	int result = my_strcmp(str, str2);
 	int result2 = my_strcmp(str, str3);
+	int result3 = my_strcmp(str, str4);
 	
-	printf("Same strcmp: %d\n", result);
-	printf("\nDifferent strcmp: %d\n\n", result2);
+	printf("Before strcmp: %d\n", result);
+	printf("\nAfter strcmp: %d\n", result2);
+	printf("\nSame strcmp: %d\n\n", result3);
 
 	// my_strcpy test //////////////////////////////////////////////////////////
 	char source[] = "Source text", destination[] = "Destination text";
