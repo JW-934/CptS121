@@ -80,10 +80,10 @@ char* my_strcat(char* destination, const char* source)
 	{
 		destination[i] = source[k];
 		++k;
-		/*if (source[i] == ' ')
+		if (source[i] == ' ')
 		{
 			++i;
-		}*/
+		}
 	}
 	//destination[i] = "\0";
 	return destination;

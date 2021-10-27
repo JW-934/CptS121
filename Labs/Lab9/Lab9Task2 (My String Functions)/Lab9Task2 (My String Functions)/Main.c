@@ -15,9 +15,9 @@ int main(void)
 
 	char* str = string, * str2 = string2, * str3 = string3, * str4 = string4;
 
-	int result = my_strcmp(str, str2);
-	int result2 = my_strcmp(str, str3);
-	int result3 = my_strcmp(str, str4);
+	int result = my_strcmp(str, str2); // s1 before s2
+	int result2 = my_strcmp(str, str3); // s1 after s2
+	int result3 = my_strcmp(str, str4); // s1 identical to s2
 	
 	printf("Before strcmp: %d\n", result);
 	printf("\nAfter strcmp: %d\n", result2);
