@@ -39,6 +39,9 @@ int main(void)
 			int result, occurances[] = { 0,0,0,0,0,0 };
 			int* occurances_ptr = NULL;
 			int* dice_ptr = NULL;
+			int combination_use[2][13];
+
+			int* combo_use_ptr = combination_use;
 
 			//printf("%d, %d, %d", occurances_ptr[0], occurances_ptr[1], occurances_ptr[2]);
 			//printf("%d, %d, %d", dice_ptr[0], dice_ptr[1], dice_ptr[2]);
@@ -86,7 +89,7 @@ int main(void)
 							printf("            13. Chance\n>");
 							scanf(" %d", &combination);
 
-							p1_points = apply_combination(combination, p1_points, occurances_ptr, dice_sum, dice_ptr, p1_upper_ptr);
+							p1_points = apply_combination(combination, p1_points, occurances_ptr, dice_sum, dice_ptr, p1_upper_ptr, 1, combo_use_ptr);
 							p1_rolls = 0;
 							printf("\nYour turn is now over.\n");
 
@@ -163,7 +166,7 @@ int main(void)
 							printf("            13. Chance\n>");
 							scanf(" %d", &combination);
 
-							p2_points = apply_combination(combination, p2_points, occurances_ptr, dice_sum, dice_ptr, p2_upper_ptr);
+							p2_points = apply_combination(combination, p2_points, occurances_ptr, dice_sum, dice_ptr, p2_upper_ptr, 2, combo_use_ptr);
 							printf("\nYour turn is now over.\n");
 							p2_rolls = 0;
 							++round;
