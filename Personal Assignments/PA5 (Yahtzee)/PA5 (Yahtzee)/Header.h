@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA5
-* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021
+* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021, October 29, 2021
 * Description: This program is Yahtzee.
 */
 
@@ -30,6 +30,6 @@ int is_full_house(int* dice);
 int is_yahtzee(int* occurances);
 int is_small_straight(int* dice);
 int is_large_straight(int* dice);
-int apply_combination(int combination, int points, int* occurances_ptr, int dice_sum, int* dice_ptr, int* upper_ptr, int player, int* combination_use);
+int apply_combination(int combination, int points, int* occurances_ptr, int dice_sum, int* dice_ptr, int* upper_ptr);
 
 char combo_prompt();

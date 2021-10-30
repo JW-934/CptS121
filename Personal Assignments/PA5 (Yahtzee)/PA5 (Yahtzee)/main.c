@@ -2,11 +2,13 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA5
-* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021
+* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021, October 29, 2021
 * Description: This program is Yahtzee.
 */
 
 #include "header.h"
+
+// I was working on having combinations not work if they've been used before but I don't have any more time to get it working.
 
 int main(void)
 {
@@ -39,9 +41,9 @@ int main(void)
 			int result, occurances[] = { 0,0,0,0,0,0 };
 			int* occurances_ptr = NULL;
 			int* dice_ptr = NULL;
-			int combination_use[2][13];
+			//int combination_use[2][13] = {{0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0}}
 
-			int* combo_use_ptr = combination_use;
+			//int* combo_use_ptr = combination_use;
 
 			//printf("%d, %d, %d", occurances_ptr[0], occurances_ptr[1], occurances_ptr[2]);
 			//printf("%d, %d, %d", dice_ptr[0], dice_ptr[1], dice_ptr[2]);
@@ -89,7 +91,7 @@ int main(void)
 							printf("            13. Chance\n>");
 							scanf(" %d", &combination);
 
-							p1_points = apply_combination(combination, p1_points, occurances_ptr, dice_sum, dice_ptr, p1_upper_ptr, 1, combo_use_ptr);
+							p1_points = apply_combination(combination, p1_points, occurances_ptr, dice_sum, dice_ptr, p1_upper_ptr);
 							p1_rolls = 0;
 							printf("\nYour turn is now over.\n");
 
@@ -166,7 +168,7 @@ int main(void)
 							printf("            13. Chance\n>");
 							scanf(" %d", &combination);
 
-							p2_points = apply_combination(combination, p2_points, occurances_ptr, dice_sum, dice_ptr, p2_upper_ptr, 2, combo_use_ptr);
+							p2_points = apply_combination(combination, p2_points, occurances_ptr, dice_sum, dice_ptr, p2_upper_ptr);
 							printf("\nYour turn is now over.\n");
 							p2_rolls = 0;
 							++round;

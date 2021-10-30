@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA5
-* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021
+* Date: October 18, 2021, October 21, 2021, October 23, 2021, October 25, 2021, October 29, 2021
 * Description: This program is Yahtzee.
 */
 
@@ -335,97 +335,97 @@ int is_large_straight(int* dice)
 	return result;
 }
 
-int apply_combination(int combination, int points, int* occurances_ptr, int dice_sum, int* dice_ptr, int* upper_ptr, int player, int* combination_use)
+int apply_combination(int combination, int points, int* occurances_ptr, int dice_sum, int* dice_ptr, int* upper_ptr)
 {
 	int sum;
 
 	// Upper section
 	if (combination == 1)
 	{
-		if (combination_use[player - 1][0] != 1)
+		//if (combination_use[player - 1][0] != 1)
 		{
 			sum = occurances_ptr[0];
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d ones, you get %d points.\n", occurances_ptr[0], sum);
-			combination_use[player - 1][0] = 1;
+			//combination_use[player - 1][0] = 1;
 		}
-		else 
+		//else 
 		{
 			printf("You already used this combination.");
 		}
 	}
 	if (combination == 2)
 	{
-		if (combination_use[player - 1][1] != 1)
+		//if (combination_use[player - 1][1] != 1)
 		{
 			sum = occurances_ptr[1] * 2;
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d twos, you get %d points.\n", occurances_ptr[1], sum);
-			combination_use[player - 1][1] = 1;
+			//combination_use[player - 1][1] = 1;
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
 	}
 	if (combination == 3)
 	{
-		if (combination_use[player - 1][2] != 1)
+		//if (combination_use[player - 1][2] != 1)
 		{
 			sum = occurances_ptr[2] * 3;
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d threes, you get %d points.\n", occurances_ptr[2], sum);
-			combination_use[player - 1][2] = 1;
+			//combination_use[player - 1][2] = 1;
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
 	}
 	if (combination == 4)
 	{
-		if (combination_use[player - 1][3] != 1)
+		//if (combination_use[player - 1][3] != 1)
 		{
 			sum = occurances_ptr[3] * 4;
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d fours, you get %d points.\n", occurances_ptr[3], sum);
-			combination_use[player - 1][3] = 1;
+			//combination_use[player - 1][3] = 1;
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
 	}
 	if (combination == 5)
 	{
-		if (combination_use[player - 1][4] != 1)
+		//if (combination_use[player - 1][4] != 1)
 		{	
 			sum = occurances_ptr[4] * 5;
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d fives, you get %d points.\n", occurances_ptr[4], sum);
-			combination_use[player - 1][4] = 1;
+			//combination_use[player - 1][4] = 1;
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
 	}
 	if (combination == 6)
 	{
-		if (combination_use[player - 1][5] != 1)
+		//if (combination_use[player - 1][5] != 1)
 		{
 			sum = occurances_ptr[5] * 6;
 			points = points + sum;
 			*upper_ptr = *upper_ptr + sum;
 			printf("\nYou have %d sixes, you get %d points.\n", occurances_ptr[5], sum);
-			combination_use[player - 1][5] = 1;
+			//combination_use[player - 1][5] = 1;
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
@@ -435,21 +435,21 @@ int apply_combination(int combination, int points, int* occurances_ptr, int dice
 	// Three of a kind
 	if (combination == 7)
 	{
-		if (combination_use[player - 1][6] != 1)
+		//if (combination_use[player - 1][6] != 1)
 		{
 			if (is_3_of_kind(occurances_ptr) == 1)
 			{
 				points = points + dice_sum;
 				printf("\nYou have a three of a kind! You get %d points.\n", &dice_sum);
-				combination_use[player - 1][6] = 1;
+				//combination_use[player - 1][6] = 1;
 			}
 			else
 			{
 				printf("\nYou do not have a three of a kind! You get 0 points.\n");
-				combination_use[player - 1][6] = 1;
+				//combination_use[player - 1][6] = 1;
 			}
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
@@ -458,21 +458,21 @@ int apply_combination(int combination, int points, int* occurances_ptr, int dice
 	// Four of a kind
 	if (combination == 8)
 	{
-		if (combination_use[player - 1][7] != 1)
+		//if (combination_use[player - 1][7] != 1)
 		{
 			if (is_4_of_kind(occurances_ptr) == 1)
 			{
 				points = points + dice_sum;
 				printf("\nYou have a four of a kind! You get %d points.\n", &dice_sum);
-				combination_use[player - 1][7] = 1;
+				//combination_use[player - 1][7] = 1;
 			}
 			else
 			{
 				printf("\nYou do not have a four of a kind! You get 0 points.\n");
-				combination_use[player - 1][7] = 1;
+				//combination_use[player - 1][7] = 1;
 			}
 		}
-		else
+		//else
 		{
 			printf("You already used this combination.");
 		}
