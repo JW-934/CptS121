@@ -142,7 +142,7 @@
     <ClInclude Include="ConnectFour.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Functions.c" />
+    <ClCompile Include="ConnectFour.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -36,6 +36,11 @@ typedef struct cell
 typedef struct board
 {
 	Cell game_board[MAX_ROWS][MAX_COLS];
+	int num_rows;
+	int num_cols;
 }Board;
+
+void init_board(Board* the_board_ptr);
+void print_board(const Board *the_board_ptr);		// Passing by pointer to save space (const to prevent modification)
 
 #endif
