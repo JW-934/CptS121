@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: Lab10Task1
-* Date: October 27, 2021
+* Date: November 3, 2021
 * Description: This program generates random sentences.
 */
 
