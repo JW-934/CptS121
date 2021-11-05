@@ -14,6 +14,25 @@ int select_who_starts()
 	return rand() % 2 + 1;
 }
 
+// Checks if either player has won
+int is_winner(int p1_ships, int p2_ships)
+{
+	if (p1_ships == 0)
+	{
+		printf("Player 2 wins!");
+		return 2;
+	}
+	else if (p2_ships == 0)
+	{
+		printf("Player 1 wins!");
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 // Welcomes user and prints game rules
 void welcome_screen()
 {
@@ -52,3 +71,119 @@ void print_board(char board[][MAX_COLS], int num_rows, int num_cols, int player)
 		putchar('\n');
 	}
 }
+
+// Prompts user to place each ship
+void manually_place_ships(char board[][MAX_COLS])
+{
+	int row1, col1, row2, col2, row3, col3, row4, col4, row5, col5, good_input = 0;
+	
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+
+	do
+	{
+		printf("Enter the five cells to place the Carrier across (row, column row, column...): ");
+		scanf("%d, %d %d, %d %d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4, &row5, &col5);
+	
+		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
+			&& row3 >= 0 && col3 < 10 && col3 >= 0 && row4 < 10 && row4 >= 0 && col4 < 10 && col4 >= 0 && row5 < 10 && row5 >= 0
+			&& col5 < 10 && col5 >= 0)
+		{
+			good_input = 1;
+		}
+	} while (good_input == 0);
+
+	good_input = 0;
+
+	board[row1][col1] = 'c';
+	board[row2][col2] = 'c';
+	board[row3][col3] = 'c';
+	board[row4][col4] = 'c';
+	board[row5][col5] = 'c';
+
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+
+	do
+	{
+		printf("Enter the four cells to place the Battleship across (row, column row, column...): ");
+		scanf("%d, %d %d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4);
+
+		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
+			&& row3 >= 0 && col3 < 10 && col3 >= 0 && row4 < 10 && row4 >= 0 && col4 < 10 && col4 >= 0)
+		{
+			good_input = 1;
+		}
+	} while (good_input == 0);
+
+	good_input = 0;
+
+	board[row1][col1] = 'b';
+	board[row2][col2] = 'b';
+	board[row3][col3] = 'b';
+	board[row4][col4] = 'b';
+
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+
+	do
+	{
+		printf("Enter the three cells to place the Cruiser across (row, column row, column...): ");
+		scanf("%d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3);
+
+		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
+			&& row3 >= 0 && col3 < 10 && col3 >= 0)
+		{
+			good_input = 1;
+		}
+	} while (good_input == 0);
+
+	good_input = 0;
+
+	board[row1][col1] = 'r';
+	board[row2][col2] = 'r';
+	board[row3][col3] = 'r';
+
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+	
+	do
+	{
+		printf("Enter the three cells to place the Submarine across (row, column row, column...): ");
+		scanf("%d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3);
+
+		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
+			&& row3 >= 0 && col3 < 10 && col3 >= 0)
+		{
+			good_input = 1;
+		}
+	} while (good_input == 0);
+
+	good_input = 0;
+
+	board[row1][col1] = 's';
+	board[row2][col2] = 's';
+	board[row3][col3] = 's';
+
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+
+	do
+	{
+		printf("Enter the two cells to place the Destroyer across (row, column row, column...): ");
+		scanf("%d, %d %d, %d", &row1, &col1, &row2, &col2);
+
+		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0)
+		{
+			good_input = 1;
+		}
+	} while (good_input == 0);
+
+	good_input = 0;
+
+	board[row1][col1] = 'd';
+	board[row2][col2] = 'd';
+
+	print_board(board, MAX_ROWS, MAX_COLS, 1);
+}
+
+void randomly_place_ships(char board[][MAX_COLS])
+{
+
+}
+

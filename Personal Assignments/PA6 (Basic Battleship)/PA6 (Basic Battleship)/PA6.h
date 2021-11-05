@@ -19,9 +19,13 @@
 #define MAX_COLS 10
 
 int select_who_starts();
+int is_winner(int p1_ships, int p2_ships);
 
 void welcome_screen();
 void init_board(char board[][MAX_COLS], int num_rows, int num_cols);
 void print_board(char board[][MAX_COLS], int num_rows, int num_cols, int player);
+void manually_place_ships(char board[][MAX_COLS]);
+void randomly_place_ships(char board[][MAX_COLS]);
+
 
 #endif

@@ -14,8 +14,8 @@ int main(void)
 
 	outfile = fopen("battleship.log", "w");
 	
-	int yes_no = 'j', starter;
-	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS];
+	int yes_no = 'j', starter, p1_ships, p2_ships, winner;
+	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS], p2_shown_board[MAX_ROWS][MAX_COLS];
 
 	srand((unsigned int)time(NULL));
 	
@@ -26,6 +26,7 @@ int main(void)
 
 	init_board(p1_game_board, MAX_ROWS, MAX_COLS);
 	init_board(p2_game_board, MAX_ROWS, MAX_COLS);
+	init_board(p2_shown_board, MAX_ROWS, MAX_COLS);
 	
 	// Prompt if user wants to manually place ships
 	do
@@ -37,22 +38,25 @@ int main(void)
 
 	if (yes_no == 'y' || yes_no == 'Y')
 	{
-		//manually_place_ships(p1_game_board);
+		manually_place_ships(p1_game_board);
+		p1_ships = 5;
+		print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 	}
 	else
 	{
 		//randomly_place_ships(p1_game_board);
+		p1_ships = 5;
+		print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 	}
 
 	//randomly_place_ships(p2_game_board);
+	p2_ships = 5;
 
 	starter = select_who_starts();
 	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", starter);
 
 	
-	print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
-	print_board(p2_game_board, MAX_ROWS, MAX_COLS, 2);
-
+	
 
 
 
