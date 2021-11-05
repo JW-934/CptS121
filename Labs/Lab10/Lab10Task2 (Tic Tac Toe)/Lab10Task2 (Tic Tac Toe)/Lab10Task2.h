@@ -1,14 +1,6 @@
 /*
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
-* Programming Assignment: Lab10Task1
-* Date: October 27, 2021
-* Description: This program generates random sentences.
-*/
-
-/*
-* Programmer: Jesse Watson
-* Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: Lab10Task2
 * Date: November 3, 2021
 * Description: This program is a game of tic tac toe.
@@ -21,9 +13,31 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+
+void move_prompt(char player, int* row_ptr, int* column_ptr);
+void print_board(Cell game_board[3][3]);
+
+typedef struct coordinate
+{
+	int row;
+	int column;
+}Coordinate;
+
+typedef struct cell
+{
+	int occupied;
+	char symbol;
+	Coordinate location;
+}Cell;
+
+typedef struct game_info
+{
+	int wins;
+	int losses;
+	int total_games_played;
+} Game_info;
 
 #endif

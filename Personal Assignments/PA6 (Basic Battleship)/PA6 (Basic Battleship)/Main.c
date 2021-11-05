@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -10,11 +10,53 @@
 
 int main(void)
 {
-	char p1_game_board[MAX_ROWS][MAX_COLS];
+	FILE* infile = NULL, * outfile = NULL;
+
+	outfile = fopen("battleship.log", "w");
+	
+	int yes_no = 'j', starter;
+	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS];
+
+	srand((unsigned int)time(NULL));
+	
+	welcome_screen();
+
+	system("pause");
+	system("cls");
 
 	init_board(p1_game_board, MAX_ROWS, MAX_COLS);
-	print_board(p1_game_board, MAX_ROWS, MAX_COLS);
+	init_board(p2_game_board, MAX_ROWS, MAX_COLS);
+	
+	// Prompt if user wants to manually place ships
+	do
+	{
+		printf("Would you like to manually place your ships (y/n)? >");
+		scanf(" %c", &yes_no);
+
+	} while (yes_no != 'y' && yes_no != 'Y' && yes_no != 'n' && yes_no != 'N');
+
+	if (yes_no == 'y' || yes_no == 'Y')
+	{
+		//manually_place_ships(p1_game_board);
+	}
+	else
+	{
+		//randomly_place_ships(p1_game_board);
+	}
+
+	//randomly_place_ships(p2_game_board);
+
+	starter = select_who_starts();
+	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", starter);
+
+	
+	print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+	print_board(p2_game_board, MAX_ROWS, MAX_COLS, 2);
 
 
+
+
+
+	fclose(outfile);
 	return 0;
 }
