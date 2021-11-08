@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -14,7 +14,7 @@ int main(void)
 
 	outfile = fopen("battleship.log", "w");
 	
-	int yes_no = 'j', starter, p1_ships, p2_ships, winner;
+	int yes_no = 'j', curr_player, p1_ships, p2_ships, winner;
 	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS], p2_shown_board[MAX_ROWS][MAX_COLS];
 
 	srand((unsigned int)time(NULL));
@@ -52,12 +52,11 @@ int main(void)
 	//randomly_place_ships(p2_game_board);
 	p2_ships = 5;
 
-	starter = select_who_starts();
-	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", starter);
+	curr_player = select_who_starts();
+	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", curr_player);
 
 	
 	
-
 
 
 
