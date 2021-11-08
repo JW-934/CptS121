@@ -1,10 +1,9 @@
 #ifndef CONNECT_FOUR_H
-
 #define CONNECT_FOUR_H
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
 
 #define MAX_ROWS 6
@@ -12,8 +11,8 @@
 
 typedef enum token_color
 {
-	NONE, RED, BLACK							// Only two possible values, first value automatically set to 0, then 1 ...
-}Token_color;
+	NONE, RED, BLACK
+} Token_color;
 
 typedef enum occupied
 {
@@ -28,9 +27,9 @@ typedef struct coordinate
 
 typedef struct cell
 {
-	Token_color token;					// Type: Token_color, Name: token
+	Token_color token;
 	Coordinate position;
-	Occupied yes_no;
+	Occupied yes_no;	
 }Cell;
 
 typedef struct board
@@ -40,7 +39,11 @@ typedef struct board
 	int num_cols;
 }Board;
 
-void init_board(Board* the_board_ptr);
-void print_board(const Board *the_board_ptr);		// Passing by pointer to save space (const to prevent modification)
+void init_board(Board *the_board_ptr);
+// we're passing-by-pointer
+// so that a lot less memory is copied. we
+// try to preserve memory when we can.
+void print_board(const Board *the_board_ptr);
+void place_token(Cell* cell_ptr, Token_color player_token);
 
 #endif
