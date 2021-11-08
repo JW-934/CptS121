@@ -49,7 +49,7 @@ void print_board(const Board* the_board_ptr)
 			// board
 			if (the_board_ptr->game_board[row_index][col_index].yes_no == NO)
 			{
-				printf("%c ", '-'); // coul also use putchar () here
+				printf("%c ", '-'); // could also use putchar () here
 			}
 			else
 			{
