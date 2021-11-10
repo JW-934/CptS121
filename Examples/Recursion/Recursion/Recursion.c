@@ -24,7 +24,7 @@ int rec_multiplication_thru_addition(int m, int n)
 	// this is a recursive function
 	int result = 0;
 
-	// simple case or base case
+	// simple case or base case?
 	if (n == 1)
 	{
 		result = m; // multiplying m * 1
@@ -38,7 +38,6 @@ int rec_multiplication_thru_addition(int m, int n)
 	return result;
 }
 
-// factorial n! = n * (n-1) * (n-2) *...* 2 * 1
 // factorial n! = n * (n-1)!
 // precondition: n >= 0
 // given: 0! = 1
@@ -46,13 +45,16 @@ int rec_factorial(int n)
 {
 	int result = 0;
 
-	if (n == 0) // base case
+	// base case?
+	if (n == 0)
 	{
 		result = 1;
 	}
-	else // recursive step: non simple case
+	else
 	{
+		// recursive step
 		result = n * rec_factorial(n - 1);
 	}
+
 	return result;
 }
