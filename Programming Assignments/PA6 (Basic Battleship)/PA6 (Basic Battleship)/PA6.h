@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021
 * Description: This program is a game of Battleship.
 */
 #ifndef PA6_H

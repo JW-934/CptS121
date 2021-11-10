@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -44,7 +44,11 @@ int main(void)
 	}
 	else
 	{
-		//randomly_place_ships(p1_game_board);
+		randomly_place_ships(p1_game_board, 2, 'D');
+		randomly_place_ships(p1_game_board, 3, 'S');
+		randomly_place_ships(p1_game_board, 3, 'R');
+		randomly_place_ships(p1_game_board, 4, 'B');
+		randomly_place_ships(p1_game_board, 5, 'C');
 		p1_ships = 5;
 		print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 	}
