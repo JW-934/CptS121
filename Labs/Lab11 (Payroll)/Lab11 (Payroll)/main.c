@@ -17,18 +17,21 @@ int main(void)
 
 	double sum, average, max, min;
 
+	// Scans employee info from payroll.txt, calculates payments and populates
+	// employees in array
 	populate_emp_ary(payroll, infile);
 	fclose(infile);
 	//print_all_emp(payroll, 4);
 	calc_payments(payroll, 4);
 	//print_all_emp(payroll, 4);
 	
+	// Calculates sum, average, min, and max
 	sum = sum_all_payments(payroll, 4);
 	average = avg_payments(payroll, 4);
 	min = min_payment(payroll, 4);
 	max = max_payment(payroll, 4);
 
-	// Opens then prints data to paid.txt
+	// Opens and prints to paid.txt
 	FILE* outfile = fopen("paid.txt", "w");
 
 	fprintf(outfile, "Total: $%.2lf\n", sum);

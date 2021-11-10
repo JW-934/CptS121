@@ -10,7 +10,7 @@
 #include "Lab11.h"
 
 // Scans payroll.txt for employee information and populates the array
-int populate_emp_ary(Employee array[200], FILE* infile)
+void populate_emp_ary(Employee array[200], FILE* infile)
 {
 	int i = 0;
 	char last_name[20];
@@ -76,7 +76,7 @@ void print_all_emp(Employee array[200], int num_employees)
 
 double sum_all_payments(Employee array[200], int num_employees)
 {
-	int sum = 0;
+	double sum = 0;
 
 	for (int i = 0; i < num_employees; ++i)
 	{
@@ -87,7 +87,7 @@ double sum_all_payments(Employee array[200], int num_employees)
 
 double avg_payments(Employee array[200], int num_employees)
 {
-	int sum = 0;
+	double sum = 0;
 
 	for (int i = 0; i < num_employees; ++i)
 	{
@@ -98,7 +98,7 @@ double avg_payments(Employee array[200], int num_employees)
 
 double min_payment(Employee array[200], int num_employees)
 {
-	int min = array[0].payment;
+	double min = array[0].payment;
 
 	for (int i = 1; i < num_employees; ++i)
 	{
@@ -112,7 +112,7 @@ double min_payment(Employee array[200], int num_employees)
 
 double max_payment(Employee array[200], int num_employees)
 {
-	int max = array[0].payment;
+	double max = array[0].payment;
 
 	for (int i = 1; i < num_employees; ++i)
 	{

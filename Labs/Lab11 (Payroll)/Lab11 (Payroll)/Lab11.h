@@ -25,8 +25,7 @@ typedef struct employee
     double payment;      // total payment for the pay period – you will compute!
 } Employee;
 
-int populate_emp_ary(Employee array[200], FILE* infile);
-
+void populate_emp_ary(Employee array[200], FILE* infile);
 void print_emp(Employee array[200], int employee);
 void calc_payments(Employee array[200], int num_employees);
 void print_all_emp(Employee array[200], int num_employees);
@@ -35,10 +34,5 @@ double sum_all_payments(Employee array[200], int num_employees);
 double avg_payments(Employee array[200], int num_employees);
 double min_payment(Employee array[200], int num_employees);
 double max_payment(Employee array[200], int num_employees);
-
-
-
-
-
 
 #endif
