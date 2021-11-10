@@ -21,12 +21,13 @@
 int select_who_starts();
 int is_winner(int p1_ships, int p2_ships);
 int generate_direction();
+int check_if_occupied(int direction, int length, int row_start, int col_start, char board[][MAX_COLS]);
 
 void welcome_screen();
 void init_board(char board[][MAX_COLS], int num_rows, int num_cols);
 void print_board(char board[][MAX_COLS], int num_rows, int num_cols, int player);
 void manually_place_ships(char board[][MAX_COLS]);
-void randomly_place_ships(char board[][MAX_COLS]);
-void generate_start_point(int* row_ptr, int* col_ptr, int ship_length);
+void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type);
+void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction);
 
 #endif

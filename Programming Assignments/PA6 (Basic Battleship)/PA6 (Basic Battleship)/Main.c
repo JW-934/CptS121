@@ -52,6 +52,12 @@ int main(void)
 	//randomly_place_ships(p2_game_board);
 	p2_ships = 5;
 
+	randomly_place_ships(p2_game_board, 'D', 2);
+	randomly_place_ships(p2_game_board, 'S', 3);
+	randomly_place_ships(p2_game_board, 'R', 3);
+	randomly_place_ships(p2_game_board, 'B', 4);
+	randomly_place_ships(p2_game_board, 'C', 5);
+
 	curr_player = select_who_starts();
 	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", curr_player);
 

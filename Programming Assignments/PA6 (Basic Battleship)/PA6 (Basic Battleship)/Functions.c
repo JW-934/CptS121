@@ -38,6 +38,48 @@ int generate_direction()
 	return rand() % 2;
 }
 
+// Checks if the selected space is already occupied by a ship
+int check_if_occupied(int direction, int length, int row_start, int col_start, char board[][MAX_COLS])
+{
+	int row = 0, col = 0, dir = 0, open = 0;
+
+	row = row_start;
+	col = col_start;
+	dir = direction;
+
+	if (dir == 0)
+	{
+		do
+		{
+			if (board[row][col] == '~')
+			{
+				open = 1; 
+				++col;
+			}
+			else if (board[row][col] != '~')
+			{
+				return open;
+			}
+		} while (col < (col_start + length));
+	}
+	else if (dir == 1)
+	{
+		do
+		{
+			if (board[row][col] == '~')
+			{
+				open = 1;
+				++row;
+			}
+			else if (board[row][col] != '~')
+			{
+				return open;
+			}
+		} while (row < (row_start + length));
+	}
+	return open;
+}
+
 // Welcomes user and prints game rules
 void welcome_screen()
 {
@@ -80,120 +122,176 @@ void print_board(char board[][MAX_COLS], int num_rows, int num_cols, int player)
 // Prompts user to place each ship
 void manually_place_ships(char board[][MAX_COLS])
 {
-	int row1, col1, row2, col2, row3, col3, row4, col4, row5, col5, good_input = 0;
+	int row1, col1, row2, col2, row3, col3, row4, col4, row5, col5, good_input = 0, empty = 0;
 	
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 
 	do
 	{
-		printf("Enter the five cells to place the Carrier across (row, column row, column...): ");
-		scanf("%d, %d %d, %d %d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4, &row5, &col5);
-	
+		printf("Enter the five cells to place the Carrier across (row column row column...): ");
+		scanf(" %d %d %d %d %d %d %d %d %d %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4, &row5, &col5);
+
 		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
 			&& row3 >= 0 && col3 < 10 && col3 >= 0 && row4 < 10 && row4 >= 0 && col4 < 10 && col4 >= 0 && row5 < 10 && row5 >= 0
 			&& col5 < 10 && col5 >= 0)
 		{
 			good_input = 1;
+			if (board[row1][col1] == '~' && board[row2][col2] == '~' && board[row3][col3] == '~' && board[row4][col4] == '~' &&
+				board[row5][col5] == '~')
+			{
+				empty = 1;
+			}
 		}
-	} while (good_input == 0);
+	} while (good_input == 0 && empty == 0);
 
-	good_input = 0;
+	good_input = 0, empty = 0;
 
-	board[row1][col1] = 'c';
-	board[row2][col2] = 'c';
-	board[row3][col3] = 'c';
-	board[row4][col4] = 'c';
-	board[row5][col5] = 'c';
+	board[row1][col1] = 'C';
+	board[row2][col2] = 'C';
+	board[row3][col3] = 'C';
+	board[row4][col4] = 'C';
+	board[row5][col5] = 'C';
 
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 
 	do
 	{
-		printf("Enter the four cells to place the Battleship across (row, column row, column...): ");
-		scanf("%d, %d %d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4);
+		printf("Enter the four cells to place the Battleship across (row column row column...): ");
+		scanf(" %d %d %d %d %d %d %d %d", &row1, &col1, &row2, &col2, &row3, &col3, &row4, &col4);
 
 		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
 			&& row3 >= 0 && col3 < 10 && col3 >= 0 && row4 < 10 && row4 >= 0 && col4 < 10 && col4 >= 0)
 		{
 			good_input = 1;
+			if (board[row1][col1] == '~' && board[row2][col2] == '~' && board[row3][col3] == '~' && board[row4][col4] == '~')
+			{
+				empty = 1;
+			}
 		}
-	} while (good_input == 0);
+	} while (good_input == 0 && empty == 0);
 
-	good_input = 0;
+	good_input = 0, empty = 0;
 
-	board[row1][col1] = 'b';
-	board[row2][col2] = 'b';
-	board[row3][col3] = 'b';
-	board[row4][col4] = 'b';
+	board[row1][col1] = 'B';
+	board[row2][col2] = 'B';
+	board[row3][col3] = 'B';
+	board[row4][col4] = 'B';
 
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 
 	do
 	{
-		printf("Enter the three cells to place the Cruiser across (row, column row, column...): ");
-		scanf("%d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3);
+		printf("Enter the three cells to place the Cruiser across (row column row column...): ");
+		scanf(" %d %d %d %d %d %d", &row1, &col1, &row2, &col2, &row3, &col3);
 
 		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
 			&& row3 >= 0 && col3 < 10 && col3 >= 0)
 		{
 			good_input = 1;
+			if (board[row1][col1] == '~' && board[row2][col2] == '~' && board[row3][col3] == '~')
+			{
+				empty = 1;
+			}
 		}
-	} while (good_input == 0);
+	} while (good_input == 0 && empty == 0);
 
-	good_input = 0;
+	good_input = 0, empty = 0;
 
-	board[row1][col1] = 'r';
-	board[row2][col2] = 'r';
-	board[row3][col3] = 'r';
+	board[row1][col1] = 'R';
+	board[row2][col2] = 'R';
+	board[row3][col3] = 'R';
 
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 	
 	do
 	{
-		printf("Enter the three cells to place the Submarine across (row, column row, column...): ");
-		scanf("%d, %d %d, %d %d, %d", &row1, &col1, &row2, &col2, &row3, &col3);
+		printf("Enter the three cells to place the Submarine across (row column row column...): ");
+		scanf(" %d %d %d %d %d %d", &row1, &col1, &row2, &col2, &row3, &col3);
 
 		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0 && row3 < 10
 			&& row3 >= 0 && col3 < 10 && col3 >= 0)
 		{
 			good_input = 1;
+			if (board[row1][col1] == '~' && board[row2][col2] == '~' && board[row3][col3] == '~')
+			{
+				empty = 1;
+			}
 		}
-	} while (good_input == 0);
+	} while (good_input == 0 && empty == 0);
 
-	good_input = 0;
+	good_input = 0, empty = 0;
 
-	board[row1][col1] = 's';
-	board[row2][col2] = 's';
-	board[row3][col3] = 's';
+	board[row1][col1] = 'S';
+	board[row2][col2] = 'S';
+	board[row3][col3] = 'S';
 
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 
 	do
 	{
-		printf("Enter the two cells to place the Destroyer across (row, column row, column...): ");
-		scanf("%d, %d %d, %d", &row1, &col1, &row2, &col2);
+		printf("Enter the two cells to place the Destroyer across (row column row column...): ");
+		scanf(" %d %d %d %d", &row1, &col1, &row2, &col2);
 
 		if (row1 < 10 && row1 >= 0 && col1 < 10 && col1 >= 0 && row2 < 10 && row2 >= 0 && col2 < 10 && col2 >= 0)
 		{
 			good_input = 1;
+			if (board[row1][col1] == '~' && board[row2][col2] == '~')
+			{
+				empty = 1;
+			}
 		}
-	} while (good_input == 0);
+	} while (good_input == 0 && empty == 0);
 
-	good_input = 0;
+	good_input = 0, empty = 0;
 
-	board[row1][col1] = 'd';
-	board[row2][col2] = 'd';
+	board[row1][col1] = 'D';
+	board[row2][col2] = 'D';
 
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 }
 
-void randomly_place_ships(char board[][MAX_COLS])
+void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type)
 {
+	int row_ind = 0, col_ind = 0, row_start = 0, col_start = 0, dir = 0, open = 0;
 
+	// Generates a starting point and makes sure the space isn't occupied
+	do
+	{
+		dir = generate_direction();
+		generate_start_point(dir, length, &row_start, &col_start);
+		open = check_if_occupied(dir, length, board, row_start, col_start);
+	} while (open == 0);
+
+	// If ship is to be placed horizontally
+	if (dir == 0)
+	{
+		for (col_ind = col_start; col_ind < (length + col_start); col_ind++)
+		{
+			row_ind = row_start;
+			board[row_ind][col_ind] = ship_type;
+		}
+	}
+	// If ship is to be placed vertically
+	else if (dir == 1)
+	{
+		for (row_ind = row_start; row_ind < (length + row_start); row_ind++)
+		{
+			col_ind = col_start;
+			board[row_ind][col_ind] = ship_type;
+		}
+	}
 }
 
-void generate_start_point(int* row_ptr, int* col_ptr, int ship_length)
+void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction)
 {
-	*row_ptr = rand() % 10;
-	*col_ptr = rand() % (10 - ship_length + 1);
+	if (direction == 0)
+	{
+		*row_ptr = rand() % MAX_ROWS;
+		*col_ptr = rand() % (MAX_COLS - length - 1);
+	}
+	else
+	{
+		*row_ptr = rand() % (MAX_ROWS - length - 1);
+		*col_ptr = rand() % MAX_COLS;
+	}
 }
