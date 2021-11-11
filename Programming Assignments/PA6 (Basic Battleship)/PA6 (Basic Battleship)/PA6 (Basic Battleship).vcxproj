@@ -145,6 +145,9 @@
     <ClCompile Include="Functions.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="battleship.log" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

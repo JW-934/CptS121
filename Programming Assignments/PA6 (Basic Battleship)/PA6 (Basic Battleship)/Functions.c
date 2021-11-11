@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021, November 11, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -78,6 +78,23 @@ int check_if_occupied(int direction, int length, int row_start, int col_start, c
 		} while (row < (row_start + length));
 	}
 	return open;
+}
+
+// Checks if a shot is a hit or miss.
+int check_shot_and_update(int row, int column, char target_board[][MAX_COLS], char tar_shown_board[][MAX_COLS])
+{
+	if (target_board[row][column] != '~' && target_board[row][column] != '*' && target_board[row][column] != 'm') // If hit
+	{
+		tar_shown_board[row][column] = '*';
+
+		return 1;
+	}
+	else // If miss
+	{
+		tar_shown_board[row][column] = 'm';
+		
+		return 0;
+	}
 }
 
 // Welcomes user and prints game rules
@@ -258,8 +275,8 @@ void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type)
 	do
 	{
 		dir = generate_direction();
-		generate_start_point(dir, length, &row_start, &col_start);
-		open = check_if_occupied(dir, length, board, row_start, col_start);
+		generate_start_point(&row_start, &col_start, length, dir);
+		open = check_if_occupied(dir, length, row_start, col_start, board);
 	} while (open == 0);
 
 	// If ship is to be placed horizontally
@@ -293,5 +310,57 @@ void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction)
 	{
 		*row_ptr = rand() % (MAX_ROWS - length - 1);
 		*col_ptr = rand() % MAX_COLS;
+	}
+}
+
+void random_coordinates(int* row, int* col)
+{
+	*row = (rand() % MAX_ROWS);
+	*col = (rand() % MAX_COLS);
+}
+
+// Prompts for a target, checks if it hit, outputs guess to outfile
+void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile)
+{
+	int row, col, hit_miss;
+	
+	printf("\nEnter a cell to fire upon (row column): ");
+	scanf(" %d %d", &row, &col);
+
+	hit_miss = check_shot_and_update(row, col, p2_board, p2_shown_board);
+
+	if (hit_miss == 1)
+	{
+		fprintf(outfile, "\nPlayer 1 guessed %d %d, hit.\n", row, col);
+		
+		printf("\nYour shot hit!\n");
+	}
+	else
+	{
+		fprintf(outfile, "\nPlayer 1 guessed %d %d, miss.\n", row, col);
+		
+		printf("\nYour shot missed!\n");
+	}
+}
+
+void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS])
+{
+	int row, col, hit_miss;
+
+	random_coordinates(&row, &col);
+
+	hit_miss = check_shot_and_update(row, col, p1_board, p1_board);
+
+	if (hit_miss == 1)
+	{
+		fprintf(outfile, "\nComputer guessed %d %d, hit.\n", row, col);
+
+		printf("\nThe computer guessed %d %d, it hit.\n", row, col);
+	}
+	else
+	{
+		fprintf(outfile, "\nComputer guessed %d %d, miss.\n", row, col);
+
+		printf("\nThe computer guessed %d %d, it missed.\n", row, col);
 	}
 }

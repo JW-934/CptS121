@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021, November 11, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -14,8 +14,12 @@ int main(void)
 
 	outfile = fopen("battleship.log", "w");
 	
-	int yes_no = 'j', curr_player, p1_ships, p2_ships, winner;
-	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS], p2_shown_board[MAX_ROWS][MAX_COLS];
+	int yes_no = 'j', first_player, p1_ships, p2_ships, winner;
+	
+	// Variables to store how many times each ship has been hit
+	int d1_hits = 0, d2_hits = 0, s1_hits = 0, s2_hits = 0, r1_hits = 0, r2_hits = 0, b1_hits = 0, b2_hits = 0, c1_hits = 0, c2_hits = 0;
+
+	char p1_game_board[MAX_ROWS][MAX_COLS], p2_game_board[MAX_ROWS][MAX_COLS], p2_shown_board[MAX_ROWS][MAX_COLS], placeholder[MAX_ROWS][MAX_COLS];
 
 	srand((unsigned int)time(NULL));
 	
@@ -56,16 +60,50 @@ int main(void)
 	//randomly_place_ships(p2_game_board);
 	p2_ships = 5;
 
-	randomly_place_ships(p2_game_board, 'D', 2);
-	randomly_place_ships(p2_game_board, 'S', 3);
-	randomly_place_ships(p2_game_board, 'R', 3);
-	randomly_place_ships(p2_game_board, 'B', 4);
-	randomly_place_ships(p2_game_board, 'C', 5);
+	randomly_place_ships(p2_game_board, 2, 'D');
+	randomly_place_ships(p2_game_board, 3, 'S');
+	randomly_place_ships(p2_game_board, 3, 'R');
+	randomly_place_ships(p2_game_board, 4, 'B');
+	randomly_place_ships(p2_game_board, 5, 'C');
 
-	curr_player = select_who_starts();
-	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", curr_player);
+	first_player = select_who_starts();
+	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", first_player);
 
-	
+	if (first_player == 1)
+	{
+		do
+		{
+			p1_turn(p2_game_board, p2_shown_board, outfile);
+			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+
+			p2_turn(p1_game_board, outfile, placeholder);
+			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+
+		} while (p1_ships != 0 && p2_ships != 0);
+	}
+	else if (first_player == 2)
+	{
+		do
+		{
+			p2_turn(p1_game_board, outfile, placeholder);
+			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+			
+			p1_turn(p2_game_board, p2_shown_board, outfile);
+			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+
+		} while (p1_ships != 0 && p2_ships != 0);
+	}
+
+
+
+
+
+
+
 	
 
 
