@@ -12,7 +12,10 @@ int main(void)
 {
 	FILE * outfile = NULL;
 
-	outfile = fopen("battleship.log", "w");
+	outfile = fopen("battleship.log", "w"); // NOTE: the log file will only update once the program returns
+	/*fprintf(outfile, "hello world ");
+	fclose(outfile);
+	return 0;*/
 	
 	int yes_no = 'j', first_player, p1_ships, p2_ships, winner;
 	
@@ -66,7 +69,7 @@ int main(void)
 	randomly_place_ships(p2_game_board, 5, 'C');
 
 	first_player = select_who_starts();
-	fprintf(outfile, "\nGame boards generated.\n");
+	fprintf(outfile, "Game boards generated.\n");
 	printf("\nBoth game boards have been generated. Player %d has been selected to start first.\n", first_player);
 
 	if (first_player == 1)
@@ -112,13 +115,12 @@ int main(void)
 
 
 
+	//p1_turn(p2_game_board, p2_shown_board, outfile, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits);
+	//check_if_sunk(2, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits, &p2_ships, outfile);
+	//print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
+	//print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
 
-
-
-
-	
-
-
+	//system("pause");
 
 	fclose(outfile);
 	return 0;
