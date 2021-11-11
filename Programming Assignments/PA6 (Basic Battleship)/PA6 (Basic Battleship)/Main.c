@@ -10,7 +10,7 @@
 
 int main(void)
 {
-	FILE* infile = NULL, * outfile = NULL;
+	FILE * outfile = NULL;
 
 	outfile = fopen("battleship.log", "w");
 	
@@ -57,7 +57,6 @@ int main(void)
 		print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 	}
 
-	//randomly_place_ships(p2_game_board);
 	p2_ships = 5;
 
 	randomly_place_ships(p2_game_board, 2, 'D');
@@ -73,13 +72,19 @@ int main(void)
 	{
 		do
 		{
-			p1_turn(p2_game_board, p2_shown_board, outfile);
+			p1_turn(p2_game_board, p2_shown_board, outfile, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits);
+			check_if_sunk(2, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits, &p2_ships, outfile);
 			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
 
-			p2_turn(p1_game_board, outfile, placeholder);
+			system("pause");
+
+			p2_turn(p1_game_board, outfile, placeholder, &d1_hits, &s1_hits, &r1_hits, &b1_hits, &c1_hits);
+			check_if_sunk(1, &d1_hits, &s1_hits, &r1_hits, &b1_hits, &c1_hits, &p1_ships, outfile);
 			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+
+			system("pause");
 
 		} while (p1_ships != 0 && p2_ships != 0);
 	}
@@ -87,13 +92,19 @@ int main(void)
 	{
 		do
 		{
-			p2_turn(p1_game_board, outfile, placeholder);
+			p2_turn(p1_game_board, outfile, placeholder, &d1_hits, &s1_hits, &r1_hits, &b1_hits, &c1_hits);
+			check_if_sunk(1, &d1_hits, &s1_hits, &r1_hits, &b1_hits, &c1_hits, &p1_ships, outfile);
 			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
 			
-			p1_turn(p2_game_board, p2_shown_board, outfile);
+			system("pause");
+
+			p1_turn(p2_game_board, p2_shown_board, outfile, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits);
+			check_if_sunk(2, &d2_hits, &s2_hits, &r2_hits, &b2_hits, &c2_hits, &p2_ships, outfile);
 			print_board(p1_game_board, MAX_ROWS, MAX_COLS, 1);
 			print_board(p2_shown_board, MAX_ROWS, MAX_COLS, 2);
+
+			system("pause");
 
 		} while (p1_ships != 0 && p2_ships != 0);
 	}

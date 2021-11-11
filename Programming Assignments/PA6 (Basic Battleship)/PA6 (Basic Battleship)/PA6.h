@@ -31,7 +31,9 @@ void manually_place_ships(char board[][MAX_COLS]);
 void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type);
 void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction);
 void random_coordinates(int* row, int* col);
-void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile);
-void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS]);
+void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile, int* d2_hits, int* s2_hits, int* r2_hits, int* b2_hits, int* c2_hits);
+void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS], int* d1_hits, int* s1_hits, int* r1_hits, int* b1_hits, int* c1_hits);
+void add_ship_hit(char type, int* d_hits, int* s_hits, int* r_hits, int* b_hits, int* c_hits);
+void check_if_sunk(int player, int* d_hits, int* s_hits, int* r_hits, int* b_hits, int* c_hits, int* player_ships, FILE* outfile);
 
 #endif

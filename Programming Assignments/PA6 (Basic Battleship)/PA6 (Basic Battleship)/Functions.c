@@ -320,12 +320,15 @@ void random_coordinates(int* row, int* col)
 }
 
 // Prompts for a target, checks if it hit, outputs guess to outfile
-void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile)
+void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile, int* d2_hits, int* s2_hits, int* r2_hits, int* b2_hits, int* c2_hits)
 {
 	int row, col, hit_miss;
-	
+	char ship;
+
 	printf("\nEnter a cell to fire upon (row column): ");
 	scanf(" %d %d", &row, &col);
+
+	ship = p2_board[row][col];
 
 	hit_miss = check_shot_and_update(row, col, p2_board, p2_shown_board);
 
@@ -333,6 +336,8 @@ void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* o
 	{
 		fprintf(outfile, "\nPlayer 1 guessed %d %d, hit.\n", row, col);
 		
+		add_ship_hit(ship, d2_hits, s2_hits, r2_hits, b2_hits, c2_hits);
+
 		printf("\nYour shot hit!\n");
 	}
 	else
@@ -343,17 +348,22 @@ void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* o
 	}
 }
 
-void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS])
+void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS], int* d1_hits, int* s1_hits, int* r1_hits, int* b1_hits, int* c1_hits)
 {
 	int row, col, hit_miss;
+	char ship;
 
 	random_coordinates(&row, &col);
+
+	ship = p1_board[row][col];
 
 	hit_miss = check_shot_and_update(row, col, p1_board, p1_board);
 
 	if (hit_miss == 1)
 	{
 		fprintf(outfile, "\nComputer guessed %d %d, hit.\n", row, col);
+
+		add_ship_hit(ship, d1_hits, s1_hits, r1_hits, b1_hits, c1_hits);
 
 		printf("\nThe computer guessed %d %d, it hit.\n", row, col);
 	}
@@ -362,5 +372,69 @@ void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_CO
 		fprintf(outfile, "\nComputer guessed %d %d, miss.\n", row, col);
 
 		printf("\nThe computer guessed %d %d, it missed.\n", row, col);
+	}
+}
+
+// Adds one hit to the specified ship
+void add_ship_hit(char type, int* d_hits, int* s_hits, int* r_hits, int* b_hits, int* c_hits)
+{
+	if (type == 'D')
+	{
+		++* d_hits;
+	}
+	if (type == 'S')
+	{
+		++* s_hits;
+	}
+	if (type == 'R')
+	{
+		++* r_hits;
+	}
+	if (type == 'B')
+	{
+		++* b_hits;
+	}
+	if (type == 'C')
+	{
+		++* c_hits;
+	}
+}
+
+void check_if_sunk(int player, int* d_hits, int* s_hits, int* r_hits, int* b_hits, int* c_hits, int* player_ships, FILE* outfile)
+{
+	if (*d_hits == 2)
+	{
+		fprintf(outfile, "\nPlayer %d's Destroyer sunk.\n", player);
+		*d_hits = -1;
+		--*player_ships;
+		printf("\nPlayer %d's Destroyer is sunk!\n", player);
+	}
+	if (*s_hits == 3)
+	{
+		fprintf(outfile, "\nPlayer %d's Submarine sunk.\n", player);
+		*s_hits = -1;
+		--*player_ships;
+		printf("\nPlayer %d's Submarine is sunk!\n", player);
+	}
+	if (*r_hits == 3)
+	{
+		fprintf(outfile, "\nPlayer %d's Cruiser sunk.\n", player);
+		*r_hits = -1;
+		--*player_ships;
+		printf("\nPlayer %d's Cruiser is sunk!\n", player);
+	}
+	if (*b_hits == 4)
+	{
+		fprintf(outfile, "\nPlayer %d's Battleship sunk.\n", player);
+		*b_hits = -1;
+		--*player_ships;
+		printf("\nPlayer %d's Battleship is sunk!\n", player);
+	}
+	if (*c_hits == 5)
+	{
+		fprintf(outfile, "\nPlayer %d's Carrier sunk.\n", player);
+		*c_hits = -1;
+		--*player_ships;
+		printf("\nPlayer %d's Carrier is sunk!\n", player);
 	}
 }
