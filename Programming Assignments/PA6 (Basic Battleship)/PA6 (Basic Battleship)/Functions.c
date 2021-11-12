@@ -33,6 +33,7 @@ int is_winner(int p1_ships, int p2_ships)
 	}
 }
 
+// Generates a random direction for ship placement
 int generate_direction()
 {
 	return rand() % 2;
@@ -97,6 +98,7 @@ int check_shot_and_update(int row, int column, char target_board[][MAX_COLS], ch
 	}
 }
 
+// Initializes all fields in a Stats struct to 0;
 void init_stats(Stats* stats)
 {
 	(*stats).hits = 0;
@@ -276,6 +278,7 @@ void manually_place_ships(char board[][MAX_COLS])
 	print_board(board, MAX_ROWS, MAX_COLS, 1);
 }
 
+// Populates a game board randomly
 void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type)
 {
 	int row_ind = 0, col_ind = 0, row_start = 0, col_start = 0, dir = 0, open = 0;
@@ -308,6 +311,7 @@ void randomly_place_ships(char board[][MAX_COLS], int length, char ship_type)
 	}
 }
 
+// Generates a random starting point for randomly placed ships
 void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction)
 {
 	if (direction == 0)
@@ -322,6 +326,7 @@ void generate_start_point(int* row_ptr, int* col_ptr, int length, int direction)
 	}
 }
 
+// Generates random coordinates for computer guesses
 void random_coordinates(int* row, int* col)
 {
 	*row = (rand() % MAX_ROWS);
@@ -363,6 +368,7 @@ void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* o
 	}
 }
 
+// Prompts for a target, checks if it hit, outputs guess to outfile
 void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS], int* d1_hits, int* s1_hits, int* r1_hits, int* b1_hits, int* c1_hits, Stats* stats)
 {
 	int row, col, hit_miss;
@@ -421,6 +427,7 @@ void add_ship_hit(char type, int* d_hits, int* s_hits, int* r_hits, int* b_hits,
 	}
 }
 
+// Checks if any ships sunk, updates corresponding variable and prints to logfile 
 void check_if_sunk(int player, int* d_hits, int* s_hits, int* r_hits, int* b_hits, int* c_hits, int* player_ships, FILE* outfile)
 {
 	if (*d_hits == 2)
@@ -460,6 +467,7 @@ void check_if_sunk(int player, int* d_hits, int* s_hits, int* r_hits, int* b_hit
 	}
 }
 
+// Calculates hit miss ratio and updates stat field
 void calc_hm_ratio(Stats* stats)
 {
 	(*stats).hit_miss_ratio = ((double)(*stats).hits / (double)(*stats).misses);
@@ -487,6 +495,7 @@ void identify_winner(Stats* p1_stats, Stats* p2_stats, int p1_ships, int p2_ship
 	}
 }
 
+// Prints both players' stats to logfile
 void fprintf_stats(FILE* outfile, Stats* p1_stats, Stats* p2_stats)
 {
 	fprintf(outfile, "\nPlayer 1 Stats:\n");
