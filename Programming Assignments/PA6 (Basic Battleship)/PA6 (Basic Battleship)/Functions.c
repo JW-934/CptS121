@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA6
-* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021, November 11, 2021
+* Date: October 29, 2021, November 3, 2021, November 4, 2021, November 8, 2021, November 9, 2021, November 11, 2021, November 12, 2021
 * Description: This program is a game of Battleship.
 */
 
@@ -95,6 +95,15 @@ int check_shot_and_update(int row, int column, char target_board[][MAX_COLS], ch
 		
 		return 0;
 	}
+}
+
+void init_stats(Stats* stats)
+{
+	(*stats).hits = 0;
+	(*stats).misses = 0;
+	(*stats).shots = 0;
+	(*stats).won = 0;
+	(*stats).hit_miss_ratio = 0;
 }
 
 // Welcomes user and prints game rules
@@ -320,7 +329,7 @@ void random_coordinates(int* row, int* col)
 }
 
 // Prompts for a target, checks if it hit, outputs guess to outfile
-void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile, int* d2_hits, int* s2_hits, int* r2_hits, int* b2_hits, int* c2_hits)
+void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* outfile, int* d2_hits, int* s2_hits, int* r2_hits, int* b2_hits, int* c2_hits, Stats* stats)
 {
 	int row, col, hit_miss;
 	char ship;
@@ -338,17 +347,23 @@ void p1_turn(char p2_board[][MAX_COLS], char p2_shown_board[][MAX_COLS], FILE* o
 		
 		add_ship_hit(ship, d2_hits, s2_hits, r2_hits, b2_hits, c2_hits);
 
+		++(*stats).hits;
+		++(*stats).shots;
+
 		printf("\nYour shot hit!\n");
 	}
 	else
 	{
 		fprintf(outfile, "\nPlayer 1 guessed %d %d, miss.\n", row, col);
 		
+		++(*stats).misses;
+		++(*stats).shots;
+
 		printf("\nYour shot missed!\n");
 	}
 }
 
-void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS], int* d1_hits, int* s1_hits, int* r1_hits, int* b1_hits, int* c1_hits)
+void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_COLS], int* d1_hits, int* s1_hits, int* r1_hits, int* b1_hits, int* c1_hits, Stats* stats)
 {
 	int row, col, hit_miss;
 	char ship;
@@ -365,11 +380,17 @@ void p2_turn(char p1_board[][MAX_COLS], FILE* outfile, char placeholder[][MAX_CO
 
 		add_ship_hit(ship, d1_hits, s1_hits, r1_hits, b1_hits, c1_hits);
 
+		++(*stats).hits;
+		++(*stats).shots;
+
 		printf("\nThe computer guessed %d %d, it hit.\n", row, col);
 	}
 	else
 	{
 		fprintf(outfile, "\nComputer guessed %d %d, miss.\n", row, col);
+
+		++(*stats).misses;
+		++(*stats).shots;
 
 		printf("\nThe computer guessed %d %d, it missed.\n", row, col);
 	}
@@ -437,4 +458,48 @@ void check_if_sunk(int player, int* d_hits, int* s_hits, int* r_hits, int* b_hit
 		--*player_ships;
 		printf("\nPlayer %d's Carrier is sunk!\n", player);
 	}
+}
+
+void calc_hm_ratio(Stats* stats)
+{
+	(*stats).hit_miss_ratio = ((double)(*stats).hits / (double)(*stats).misses);
+}
+
+// Determine who won
+void identify_winner(Stats* p1_stats, Stats* p2_stats, int p1_ships, int p2_ships, FILE* outfile)
+{
+	// Determine who won
+	if (p1_ships == 0)
+	{
+		(*p2_stats).won = 1;
+
+		fprintf(outfile, "Player 2 won.");
+
+		printf("\nPlayer 2 wins!\n");
+	}
+	else if (p2_ships == 0)
+	{
+		(*p1_stats).won = 1;
+
+		fprintf(outfile, "Player 1 won.");
+
+		printf("\nPlayer 1 wins!\n");
+	}
+}
+
+void fprintf_stats(FILE* outfile, Stats* p1_stats, Stats* p2_stats)
+{
+	fprintf(outfile, "\nPlayer 1 Stats:\n");
+	fprintf(outfile, "Total shots: %d\n", (*p1_stats).shots);
+	fprintf(outfile, "Hits: %d\n", (*p1_stats).hits);
+	fprintf(outfile, "Misses: %d\n", (*p1_stats).misses);
+	fprintf(outfile, "Hit/Miss Ratio: %lf\n", (*p1_stats).hit_miss_ratio);
+
+	fprintf(outfile, "\nPlayer 2 Stats:\n");
+	fprintf(outfile, "Total shots: %d\n", (*p2_stats).shots);
+	fprintf(outfile, "Hits: %d\n", (*p2_stats).hits);
+	fprintf(outfile, "Misses: %d\n", (*p2_stats).misses);
+	fprintf(outfile, "Hit/Miss Ratio: %lf\n", (*p2_stats).hit_miss_ratio);
+
+	printf("Statistics outputted to logfile successfully!");
 }
