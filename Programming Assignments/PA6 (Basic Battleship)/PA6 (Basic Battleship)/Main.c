@@ -119,7 +119,7 @@ int main(void)
 		} while (p1_ships != 0 && p2_ships != 0);
 	}
 	
-	// Check who won and update corresponding stat
+	// Check then print who won and update corresponding stat
 	identify_winner(&p1_stats, &p2_stats, p1_ships, p2_ships, outfile);
 
 	// Print stats to outfile
