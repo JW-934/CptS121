@@ -502,13 +502,13 @@ void fprintf_stats(FILE* outfile, Stats* p1_stats, Stats* p2_stats)
 	fprintf(outfile, "Total shots: %d\n", (*p1_stats).shots);
 	fprintf(outfile, "Hits: %d\n", (*p1_stats).hits);
 	fprintf(outfile, "Misses: %d\n", (*p1_stats).misses);
-	fprintf(outfile, "Hit/Miss Ratio: %lf\n", (*p1_stats).hit_miss_ratio);
+	fprintf(outfile, "Hit/Miss Ratio: %.2lf\n", (*p1_stats).hit_miss_ratio);
 
 	fprintf(outfile, "\nPlayer 2 Stats:\n");
 	fprintf(outfile, "Total shots: %d\n", (*p2_stats).shots);
 	fprintf(outfile, "Hits: %d\n", (*p2_stats).hits);
 	fprintf(outfile, "Misses: %d\n", (*p2_stats).misses);
-	fprintf(outfile, "Hit/Miss Ratio: %lf\n", (*p2_stats).hit_miss_ratio);
+	fprintf(outfile, "Hit/Miss Ratio: %.2lf\n", (*p2_stats).hit_miss_ratio);
 
 	printf("Statistics outputted to logfile successfully!");
 }
