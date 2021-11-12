@@ -9,6 +9,7 @@
 // precondition: m > 0, n > 0
 // m + m + ... + m --> n times
 int multiplication_thru_addition(int m, int n);
+
 // m * n = ?
 // precondition: m > 0, n > 0
 // m + m + ... + m --> n times
@@ -18,5 +19,11 @@ int rec_multiplication_thru_addition(int m, int n);
 // precondition: n >= 0
 // given: 0! = 1
 int rec_factorial(int n);
+
+// fibonacci n = fib(n - 1) + fib(n - 2)
+// given: term 1 = 0, term 2 = 1
+// precondition: n >= 1
+int rec_fib(int n);
+
 
 #endif

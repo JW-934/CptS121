@@ -58,3 +58,22 @@ int rec_factorial(int n)
 
 	return result;
 }
+
+int rec_fib(int n)
+{
+	int result = 0;
+
+	if (n == 1) // could be eliminated bc result is already 0 (base case)
+	{
+		result = 0;
+	}
+	else if (n == 2) // base case
+	{
+		result = 1;
+	}
+	else // recursive step
+	{
+		result = rec_fib(n - 1) + rec_fib(n - 2);
+	}
+	return result;
+}

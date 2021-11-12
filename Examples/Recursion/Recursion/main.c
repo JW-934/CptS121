@@ -16,12 +16,14 @@ int main(void)
 {
 	int m = 3, n = 5, result = 0;
 
-	printf("mult thru addition iterative: %d\n",
+	/*printf("mult thru addition iterative: %d\n",
 		result = multiplication_thru_addition(m, n));
 	printf("mult thru addition recursively: %d\n",
 		result = rec_multiplication_thru_addition(m, n));
 	printf("mult thru addition recursively: %d\n",
-		result = rec_factorial(n));
+		result = rec_factorial(n));*/
+
+	printf("fibonacci: %d\n", result = rec_fib(43));
 
 	return 0;
 }
