@@ -16,6 +16,9 @@ int main(void)
 {
 	int m = 3, n = 5, result = 0;
 
+	char str1[50] = "cat", str2[50] = "";
+	rec_str_cpy(str2, str1);
+
 	/*printf("mult thru addition iterative: %d\n",
 		result = multiplication_thru_addition(m, n));
 	printf("mult thru addition recursively: %d\n",

@@ -25,5 +25,6 @@ int rec_factorial(int n);
 // precondition: n >= 1
 int rec_fib(int n);
 
+char* rec_str_cpy(char* dest_ptr, const char* src_ptr);
 
 #endif

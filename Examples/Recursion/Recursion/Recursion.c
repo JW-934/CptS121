@@ -77,3 +77,17 @@ int rec_fib(int n)
 	}
 	return result;
 }
+
+char* rec_str_cpy(char* dest_ptr, const char* src_ptr) 
+{
+	if (*src_ptr == '\0') // base case
+	{
+		*dest_ptr = '\0';
+	}
+	else // recursive step
+	{
+		rec_str_cpy(dest_ptr + 1, src_ptr + 1);
+		*dest_ptr = *src_ptr;
+	}
+	return dest_ptr;
+}
