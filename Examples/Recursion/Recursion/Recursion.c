@@ -80,6 +80,8 @@ int rec_fib(int n)
 
 char* rec_str_cpy(char* dest_ptr, const char* src_ptr) 
 {
+	printf("sizeof(dest_ptr): %d bytes\n", sizeof(dest_ptr));
+	
 	if (*src_ptr == '\0') // base case
 	{
 		*dest_ptr = '\0';

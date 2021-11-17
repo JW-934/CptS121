@@ -17,7 +17,11 @@ int main(void)
 	int m = 3, n = 5, result = 0;
 
 	char str1[50] = "cat", str2[50] = "";
-	rec_str_cpy(str2, str1);
+	int num[100] = { 0 };
+	printf("sizeof(str1): %d bytes\n", sizeof(str1));
+	printf("sizeof(num): %d bytes\n", sizeof(num));
+	printf("num of elements in num: %d\n", sizeof(num) / sizeof(int)); // sizeof array / sizeof data type = number of elements in array
+	puts(rec_str_cpy(str2, str1));
 
 	/*printf("mult thru addition iterative: %d\n",
 		result = multiplication_thru_addition(m, n));
@@ -26,7 +30,7 @@ int main(void)
 	printf("mult thru addition recursively: %d\n",
 		result = rec_factorial(n));*/
 
-	printf("fibonacci: %d\n", result = rec_fib(43));
+	//printf("fibonacci: %d\n", result = rec_fib(43));
 
 	return 0;
 }
