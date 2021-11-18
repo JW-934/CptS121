@@ -8,7 +8,7 @@
 
 #include "stringrev.h"
 
-char* string_reverse(char* str_ptr, int strlen)
+void string_reverse(char* str_ptr, int strlen)
 {
 	int index = strlen - 1;
 	char temp;
@@ -20,11 +20,10 @@ char* string_reverse(char* str_ptr, int strlen)
 
 	if (index == 0 || index == (strlen / 2) - 1)
 	{
-		return *str_ptr;
+		return;
 	}
 	else
 	{
 		string_reverse(str_ptr + 1, index);
 	}
-	return str_ptr;
 }

@@ -15,9 +15,13 @@ int main(void)
 
 	puts(str);
 
-	puts(string_reverse(str, 10));
+	string_reverse(str, 10);
+
+	puts(str);
 
 	puts(str2);
 
-	puts(string_reverse(str2, 11));
+	string_reverse(str2, 11);
+
+	puts(str2);
 }

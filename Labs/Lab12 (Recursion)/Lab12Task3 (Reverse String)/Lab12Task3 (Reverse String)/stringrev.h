@@ -14,6 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 
-char* string_reverse(char* str, int strlen);
+void string_reverse(char* str, int strlen);
 
 #endif
