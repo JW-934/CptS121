@@ -15,7 +15,8 @@
 #include <math.h>
 #include <string.h>
 
-void traverse_maze(char maze[8][8]);
+int traverse_maze(char maze[8][8], int row_ind, int col_ind);
 
+void print_maze(char maze[8][8]);
 
 #endif

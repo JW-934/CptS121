@@ -18,12 +18,22 @@ int main(void)
 					  { 'X', 'X', ' ' , ' ' , ' ' , ' ' , 'X' , 'X' },
 					  { 'X', 'X', 'X' , 'X' , 'X' , ' ' , 'X' , 'X' },
 					  { 'X', 'X', 'X' , 'X' , 'X' , ' ' , ' ' , ' ' },
-					  { 'X', 'X', 'X' , 'X' , 'X' , 'X' , 'X' , 'X' } 
+					  { 'X', 'X', 'X' , 'X' , 'X' , 'X' , 'X' , ' ' } 
 					  };
 
+	print_maze(maze);
 
+	putchar('\n');
 
-
-
-
+	if (traverse_maze(maze, 0, 1) == 1)
+	{
+		print_maze(maze);
+		printf("Maze completed!\n");
+	}
+	else
+	{
+		print_maze(maze);
+		printf("No path found!\n");
+	}
+	return 0;
 }
