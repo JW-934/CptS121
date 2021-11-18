@@ -13,6 +13,6 @@
 
 #include <stdio.h>
 
-void hanoi(char from_peg, char to_peg, char aux_peg, int n);
+void hanoi(char start_peg, char end_peg, char other_peg, int n);
 
 #endif

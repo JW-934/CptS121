@@ -8,16 +8,16 @@
 
 #include "hanoi.h"
 
-void hanoi(char from_peg, char to_peg, char aux_peg, int n)
+void hanoi(char start_peg, char end_peg, char other_peg, int n)
 {
 	if (n == 1)
 	{
-		printf("Size 1 disk from peg %c to peg %c\n", from_peg, to_peg);
+		printf("Size 1 disk from peg %c to peg %c\n", start_peg, end_peg);
 	}
 	else
 	{
-		hanoi(from_peg, aux_peg, to_peg, n - 1);
-		printf("Size %d disk from peg %c to peg %c\n", n, from_peg, to_peg);
-		hanoi(aux_peg, to_peg, from_peg, n - 1);
+		hanoi(start_peg, other_peg, end_peg, n - 1);
+		printf("Size %d disk from peg %c to peg %c\n", n, start_peg, end_peg);
+		hanoi(other_peg, end_peg, start_peg, n - 1);
 	}
 }
