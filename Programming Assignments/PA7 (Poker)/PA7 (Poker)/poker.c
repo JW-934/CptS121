@@ -8,6 +8,31 @@
 
 #include "poker.h"
 
+// Only accepts menu options 1-3
+int print_and_validate()
+{
+	int option;
+
+	do
+	{
+		main_menu();
+		option = get_option();
+
+	} while (option < 1 || option > 3);
+	return option;
+}
+
+// Prompt user for a menu option
+int get_option()
+{
+	int selection;
+	// Prompt for selection
+	printf("\nMake your selection: ");
+	scanf("%d", &selection);
+
+	return selection;
+}
+
 /* shuffle cards in deck */
 
 void shuffle(int wDeck[][13])
@@ -32,14 +57,14 @@ void shuffle(int wDeck[][13])
 }
 
 /* deal cards in deck */
-void deal(const int wDeck[][13], const char* wFace[], const char* wSuit[])
+void deal(const int wDeck[][13], const char* wFace[], const char* wSuit[], Hand hand, int num_cards)
 {
 	int row = 0;    /* row number */
 	int column = 0; /*column number */
 	int card = 0;   /* card counter */
 
-	/* deal each of the 52 cards */
-	for (card = 1; card <= 52; card++)
+	// deal num_cards cards
+	for (card = 1; card <= num_cards; card++)
 	{
 		/* loop through rows of wDeck */
 		for (row = 0; row <= 3; row++)
@@ -55,4 +80,29 @@ void deal(const int wDeck[][13], const char* wFace[], const char* wSuit[])
 			}
 		}
 	}
+}
+
+// Print game rules
+void print_rules()
+{
+	printf("\nPoker rules placeholder.\n");
+}
+
+// Set all values in the Cards inside a Hand to -1 to initialize
+void init_hand(Hand* hand)
+{
+	for (int i = 0; i < 5; ++i)
+	{
+		(*hand).cards[i].face_ind = -1;
+		(*hand).cards[i].suit_ind = -1;
+	}
+}
+
+// Print menu options
+void main_menu()
+{
+	// Menu Options
+	printf("\n1: Display Game Rules\n");
+	printf("2: Play Game\n");
+	printf("3: Exit\n");
 }

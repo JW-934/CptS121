@@ -10,6 +10,10 @@
 
 int main(void)
 {
+	srand((unsigned)time(NULL)); /* seed random-number generator */
+	
+	int option, game_over = 0;
+
 	/* initialize suit array */
 	const char* suit[4] = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
@@ -20,10 +24,58 @@ int main(void)
 	/* initalize deck array */
 	int deck[4][13] = { 0 };
 
-	srand((unsigned)time(NULL)); /* seed random-number generator */
+	// Initialize hands
+	Hand hand1, deal_hand;
+	init_hand(&hand1);
+	init_hand(&deal_hand);
 
-	shuffle(deck);
-	deal(deck, face, suit);
+	do
+	{
+		printf("**********Welcome to Poker!**********\n");
+		
+		option = print_and_validate();
+
+		system("cls");
+
+		switch (option)
+		{
+		case 1: // Display Rules
+			//print_rules();
+			break;
+		case 2: // Play Game
+			shuffle(deck);
+			deal(deck, face, suit, hand1, 5);
+			deal(deck, face, suit, deal_hand, 5);
+			putchar('\n');
+
+
+
+
+
+
+
+
+
+
+
+
+			if (game_over == 1)
+			{
+				option = 3;
+			}
+
+			break;
+		case 3: // Exit
+			printf("\nGoodbye.\n");
+			break;
+		}
+	} while (option != 3);
+	
+	
+	
+	
+
+	
 
 
 

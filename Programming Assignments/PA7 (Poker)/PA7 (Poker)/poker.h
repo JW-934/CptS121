@@ -26,11 +26,14 @@ typedef struct hand
 	Card cards[5];
 }Hand;
 
+int print_and_validate();
+int get_option();
+
 void shuffle(int wDeck[][13]);
-void deal(const int wDeck[][13], const char* wFace[], const char* wSuit[]);
-
-
-
+void deal(const int wDeck[][13], const char* wFace[], const char* wSuit[], Hand hand, int num_cards);
+void print_rules();
+void init_hand(Hand* hand);
+void main_menu();
 
 
 
