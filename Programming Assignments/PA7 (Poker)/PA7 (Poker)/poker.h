@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA7
-* Date: November 15, 2021, November 20, 2021
+* Date: November 15, 2021, November 20, 2021, November 24, 2021
 * Description: This program is a game of Poker.
 */
 
@@ -17,8 +17,10 @@
 
 typedef struct card
 {
-	int face_ind;
+	int num_ind;
 	int suit_ind;
+	char* num_str;
+	char* suit_str;
 }Card;
 
 typedef struct hand
@@ -35,7 +37,7 @@ void print_rules();
 void init_hand(Hand* hand);
 void main_menu();
 
-
-
+Card info_to_Card(char* num, char* suit);
+Card unused_card(int wDeck[][13], const char* wFace[], const char* wSuit[]);
 
 #endif
