@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA7
-* Date: November 15, 2021, November 20, 2021, November 24, 2021
+* Date: November 15, 2021, November 20, 2021, November 24, 2021, November 29, 2021
 * Description: This program is a game of Poker.
 */
 
@@ -113,6 +113,65 @@ void main_menu()
 	printf("\n1: Display Game Rules\n");
 	printf("2: Play Game\n");
 	printf("3: Exit\n");
+}
+
+// Prints all cards in hand
+void print_hand(Hand* hand)
+{
+	printf("Your hand:\n\n");
+	for (int i = 0; i < 5; ++i)
+	{
+		printf("%s of %s\n", (*hand).cards[i].num_str, (*hand).cards[i].suit_str);
+	}
+	putchar('\n');
+}
+
+// Asks user which cards to replace then replaces them with drawn cards
+void replace_cards(Hand* hand, int wDeck[][13], const char* wFace[], const char* wSuit[])
+{
+	int num_cards = -1, count = 0;
+	char unused;
+	char* face1[9], suit1[9], face2[9], suit2[9], face3[9], suit3[9], face4[9], suit4[9], face5[9], suit5[9];
+
+	do
+	{
+		printf("How many cards would you like to redraw?\nMake your selection: ");
+		scanf("%d", &num_cards);
+	} while (num_cards < 0 || num_cards > 5);
+
+	if (num_cards > 0 && num_cards < 5)
+	{
+		printf("\nEnter first card to redraw (Face of Suit): ");
+		scanf("%s %c%c %s", face1, &unused, &unused, suit1);
+	}
+	if (num_cards > 1 && num_cards < 5)
+	{
+		printf("\nEnter second card to redraw (Face of Suit): ");
+		scanf("%s %c%c %s", face2, &unused, &unused, suit2);
+	}
+	if (num_cards > 2 && num_cards < 5)
+	{
+		printf("\nEnter third card to redraw (Face of Suit): ");
+		scanf("%s %c%c %s", face3, &unused, &unused, suit3);
+	}
+	if (num_cards > 3 && num_cards < 5)
+	{
+		printf("\nEnter fourth card to redraw (Face of Suit): ");
+		scanf("%s %c%c %s", face4, &unused, &unused, suit4);
+	}
+	if (num_cards == 5)
+	{
+		*face1 = (*hand).cards[1].num_str;
+		*suit1 = (*hand).cards[1].suit_str;
+		*face2 = (*hand).cards[1].num_str;
+		*suit2 = (*hand).cards[1].suit_str;
+		*face3 = (*hand).cards[1].num_str;
+		*suit3 = (*hand).cards[1].suit_str;
+		*face4 = (*hand).cards[1].num_str;
+		*suit4 = (*hand).cards[1].suit_str;
+		*face5 = (*hand).cards[1].num_str;
+		*suit5 = (*hand).cards[1].suit_str;
+	}
 }
 
 // Takes card info and converts it into a Card

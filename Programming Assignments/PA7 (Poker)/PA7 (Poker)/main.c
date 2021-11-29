@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA7
-* Date: November 15, 2021, November 20, 2021, November 24, 2021
+* Date: November 15, 2021, November 20, 2021, November 24, 2021, November 29, 2021
 * Description: This program is a game of Poker.
 */
 
@@ -46,11 +46,10 @@ int main(void)
 			shuffle(deck);
 			deal(deck, face, suit, hand1, 5);
 			deal(deck, face, suit, deal_hand, 5);
-			putchar('\n');
 
+			print_hand(&hand1);
 
-
-
+			replace_cards(&hand1, deck, face, suit);
 
 
 
