@@ -35,3 +35,25 @@ void print_int_as_bits(int number)
 
 	printf("%d", number % 2);
 }
+
+//void non_rec_print_int_as_bits(int number)
+//{
+//	int bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8;
+//
+//	bit1 = number % 2;
+//	bit2 = (number / 2) % 2;
+//	number /= 2;
+//	bit3 = (number / 2) % 2;
+//	number /= 2;
+//	bit4 = (number / 2) % 2;
+//	number /= 2;
+//	bit5 = (number / 2) % 2;
+//	number /= 2;
+//	bit6 = (number / 2) % 2;
+//	number /= 2;
+//	bit7 = (number / 2) % 2;
+//	number /= 2;
+//	bit8 = (number / 2) % 2;
+//	
+//	printf("%d%d%d%d%d%d%d%d", bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8);
+//}

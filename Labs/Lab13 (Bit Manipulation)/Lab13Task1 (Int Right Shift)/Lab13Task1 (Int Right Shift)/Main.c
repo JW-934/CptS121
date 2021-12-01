@@ -17,6 +17,7 @@ int main(void)
 	number = number >> 4;
 
 	print_int_as_bits(number);
-
+	//putchar('\n');
+	//non_rec_print_int_as_bits(number);
 	return 0;
 }

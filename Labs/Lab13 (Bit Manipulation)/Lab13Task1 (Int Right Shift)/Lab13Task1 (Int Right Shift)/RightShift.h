@@ -17,4 +17,5 @@ int right_shift_by_4(int number);
 
 void rec_print_last_int_bits(int number);
 void print_int_as_bits(int number);
+//void non_rec_print_int_as_bits(int number);
 #endif
