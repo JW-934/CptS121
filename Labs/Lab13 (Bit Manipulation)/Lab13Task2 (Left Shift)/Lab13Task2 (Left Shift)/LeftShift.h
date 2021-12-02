@@ -9,7 +9,7 @@
 #ifndef LEFTSHIFT_H
 
 #define LEFTSHIFT_H
-#define _CRT_NO_SECURE_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 
