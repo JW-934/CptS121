@@ -8,6 +8,8 @@
 
 #include "poker.h"
 
+// Unfinished, I spent my break allowing myself to become less burnt out.
+
 int main(void)
 {
 	srand((unsigned)time(NULL)); /* seed random-number generator */
