@@ -37,6 +37,29 @@ int insert_at_front(Node** head_ptr, char* item_ptr) // usually change head ptr 
 	return success;
 }
 
+// Insert items in alphabetical order
+int insert_in_order(Node** list_ptr, char* item_ptr)
+{
+	Node* mem_ptr = make_node(item_ptr), *prev_ptr = NULL, *curr_ptr = *list_ptr; // *list_ptr gets first node in list
+	int success = 0;
+
+	if (mem_ptr != NULL) // make_node (malloc) was successful
+	{
+		success = 1;
+
+		while (curr_ptr != NULL && strcmp(item_ptr, curr_ptr->grocery_item) > 0) // could also use recursion, item_ptr is new item, using short circuit eval here
+		{																		 // program would break if second evaluation done while null
+			// moving the pointers through the list
+			prev_ptr = curr_ptr;
+			curr_ptr = curr_ptr->next_ptr; // curr_ptr could be null if list empty or at end of list (added curr_ptr condition to while)
+		}
+		// found place to insert item
+		mem_ptr->next_ptr = curr_ptr;
+		prev_ptr->next_ptr = mem_ptr;
+	}
+	return success;
+}
+
 void print_list(Node* head_ptr)
 {
 	Node* cur_ptr = head_ptr;

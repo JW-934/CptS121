@@ -18,6 +18,7 @@ Node* make_node(char* item_ptr);
 	
 // list operation
 int insert_at_front(Node **head_ptr, char *item_ptr);
+int insert_in_order(Node** list_ptr, char* item_ptr);
 
 void print_list(Node *head_ptr); // single star because not changing list
 
