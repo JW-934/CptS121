@@ -34,12 +34,20 @@ int main(void)
 	int list[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 	printf("Target(4) index : %d\n", binary_search(list, 4, 10));
-	printf("Target(12) index : %d", binary_search(list, 12, 10));
+	printf("Target(12) index : %d\n", binary_search(list, 12, 10));
 	////////////////////////////////////////////////////////////////
+	//bubble_sort/////////////////////////////////////////////////// unworking
+	char* bubstr[4] = { "apple", "bowl", "dentist", "choose"};
 	
-	
-	
-	
+	printf("%s %s %s %s\n", bubstr[0], bubstr[1], bubstr[2], bubstr[3]);
+
+	bubble_sort(bubstr, 4);
+
+	printf("%s %s %s %s\n", bubstr[0], bubstr[1], bubstr[2], bubstr[3]);
+	///////////////////////////////////////////////////////////////
+	//is_palindrome////////////////////////////////////////////////
+
+
 	
 	
 	return 0;

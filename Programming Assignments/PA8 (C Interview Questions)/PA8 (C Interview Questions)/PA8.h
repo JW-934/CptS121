@@ -25,5 +25,5 @@ int sum_primes(unsigned int n);
 
 char* my_str_n_cat(char* dest, char* src, int n);
 
-void bubble_sort(char* array[], int num_strs);
+void bubble_sort(char* strs[], int num_strs);
 #endif

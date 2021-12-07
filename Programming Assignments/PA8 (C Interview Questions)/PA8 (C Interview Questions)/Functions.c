@@ -61,7 +61,24 @@ char* my_str_n_cat(char* dest, char* src, int n)
 	return dest;
 }
 
-void bubble_sort(char* array[], int num_strs)
+void bubble_sort(char* strs[], int num_strs)
 {
+	int U = num_strs - 1, C = 1;
+	char temp[20];
 
+	while (U > 1)
+	{
+		while (C < U)
+		{
+			if (strcmp(strs[C], strs[C - 1]) < 0)
+			{
+				temp[0] = strs[C - 1];
+				strs[C - 1] = strs[C];
+				strs[C] = temp[0];
+				++C;
+			}
+			--U;
+		}
+	}
+	return;
 }
