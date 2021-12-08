@@ -76,7 +76,7 @@ char* delete_front(Node** list_ptr, char *return_string)
 	Node* temp_ptr = *list_ptr;
 	// char return_string[25] = " ";	// (*list_ptr)->grocery_item;
 	*list_ptr = (*list_ptr)->next_ptr;
-	strcpy(return_string, (*list_ptr)->grocery_item);
+	strcpy(return_string, (*temp_ptr)->grocery_item);
 
 	free(temp_ptr); // releases memory
 
