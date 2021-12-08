@@ -54,15 +54,16 @@ int insert_in_order(Node** list_ptr, char* item_ptr)
 			curr_ptr = curr_ptr->next_ptr; // curr_ptr could be null if list empty or at end of list (added curr_ptr condition to while)
 		}
 		// found place to insert item
+		mem_ptr->next_ptr = mem_ptr;
 		if (prev_ptr != NULL)
 		{
 			//After the first node or at the end of the list
-			mem_ptr->next_ptr = curr_ptr;
+			//mem_ptr->next_ptr = curr_ptr; // in both cases so "factor it out"
 			prev_ptr->next_ptr = mem_ptr;
 		}
 		else // inserting at front or inserting into an empty list (prev_ptr == NULL)
 		{
-			mem_ptr->next_ptr = curr_ptr; // or *list_ptr
+			//mem_ptr->next_ptr = curr_ptr; // or *list_ptr // in both cases so "factor it out"
 			*list_ptr = mem_ptr;
 		}
 	}
