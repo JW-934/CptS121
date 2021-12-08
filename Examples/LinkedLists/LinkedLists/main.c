@@ -12,13 +12,24 @@ int main(void)
 {
 	Node* head_ptr = NULL; // List is empty
 	int success = 0;
+	char item[25] = "", *return_ptr;
 
-	success = insert_at_front(&head_ptr, "bananas");
-	success = insert_at_front(&head_ptr, "steak");
-	success = insert_at_front(&head_ptr, "milk"); // last item is at front
+	//success = insert_at_front(&head_ptr, "bananas");
+	//success = insert_at_front(&head_ptr, "steak");
+	//success = insert_at_front(&head_ptr, "milk"); // last item is at front
 	//printf("--> %s -->\n", head_ptr->grocery_item);
 
-
+	success = insert_in_order(&head_ptr, "steak");
+	success = insert_in_order(&head_ptr, "bananas");
+	success = insert_in_order(&head_ptr, "milk");
+	success = insert_in_order(&head_ptr, "zucchini");
+	success = insert_in_order(&head_ptr, "milk"); // duplicates not ignored
+	print_list(head_ptr); //does not currently print (replace later)
+	return_ptr = delete_front(&head_ptr, item); // & because there will be modification
+	puts("item removed: ");
+	puts(return_ptr);
+	puts('\n');
+	print_list(head_ptr);
 
 	//int* mem_ptr = NULL;
 	////int n = 42;

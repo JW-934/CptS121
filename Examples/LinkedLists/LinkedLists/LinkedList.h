@@ -20,6 +20,12 @@ Node* make_node(char* item_ptr);
 int insert_at_front(Node **head_ptr, char *item_ptr);
 int insert_in_order(Node** list_ptr, char* item_ptr);
 
+// list operation
+// removing first item in the list
+// precondition: list must not be empty
+
+char* delete_front(Node** list_ptr, char* return_string);
+
 void print_list(Node *head_ptr); // single star because not changing list
 
 #endif

@@ -70,6 +70,19 @@ int insert_in_order(Node** list_ptr, char* item_ptr)
 	return success;
 }
 
+char* delete_front(Node** list_ptr, char *return_string)
+{
+	//*list_ptr = (*list_ptr)->next_ptr; // now there's no way to reference the original node, need a temp ptr
+	Node* temp_ptr = *list_ptr;
+	// char return_string[25] = " ";	// (*list_ptr)->grocery_item;
+	*list_ptr = (*list_ptr)->next_ptr;
+	strcpy(return_string, (*list_ptr)->grocery_item);
+
+	free(temp_ptr); // releases memory
+
+	return return_string; // array names are char* (would return address of first array element)
+}
+
 void print_list(Node* head_ptr)
 {
 	Node* cur_ptr = head_ptr;
