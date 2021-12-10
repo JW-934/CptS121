@@ -1,87 +1,118 @@
 #include "LinkedList.h"
 
+
+// we'll add error checking to make_node () on Friday, 12/3
+
+// make_node () allocates a Node on the heap.
+// it also intitializes the node with a grocery item string
+// and sets the next ptr to NULL. the function returns the address
+// of the start of the block of memory (Node) on the heap.
 Node* make_node(char* item_ptr)
 {
-	Node* mem_ptr = malloc(sizeof(Node));
+	// allocates 29 bytes of memory for a Node on the heap
+	Node* mem_ptr = malloc(sizeof(Node)); 
 
-	if (mem_ptr != NULL) // Memory was successfully allocated on the heap
+	if (mem_ptr != NULL) // memory was allocated succesfully on the heap
 	{
-		mem_ptr->next_ptr = NULL;
+		// the next_ptr is really the "link" between nodes
+		mem_ptr->next_ptr = NULL; // set the next_ptr to NULL
+		// copy the grocery item into the Node that will go
+		// into the linked list
 		strcpy(mem_ptr->grocery_item, item_ptr);
 	}
-	return mem_ptr;
+
+	return mem_ptr; // return the address of the start of the Node on the heap
 }
 
-int insert_at_front(Node** head_ptr, char* item_ptr) // usually change head ptr name to list_ptr
+
+// list operation
+int insert_at_front(Node** head_ptr, char* item_ptr)
 {
 	Node* mem_ptr = make_node(item_ptr);
 	int success = 0;
 
-	if (mem_ptr != NULL) // space on heap has been allocated for a node
+	if (mem_ptr != NULL) // we allocated space on heap for a Node
 	{
 		success = 1;
 
 		// check if empty list
 		if (*head_ptr == NULL)
 		{
-			//yes it's empty
+			// yes, it's empty
 			*head_ptr = mem_ptr;
 		}
 		else
 		{
-			// not empty
+			// it's not empty
 			mem_ptr->next_ptr = *head_ptr;
 			*head_ptr = mem_ptr;
 		}
 	}
+
 	return success;
 }
 
-// Insert items in alphabetical order
+// order? alphabetical order - dictionary order
 int insert_in_order(Node** list_ptr, char* item_ptr)
 {
-	Node* mem_ptr = make_node(item_ptr), *prev_ptr = NULL, *curr_ptr = *list_ptr; // *list_ptr gets first node in list
+	Node* mem_ptr = make_node(item_ptr), *prev_ptr = NULL,
+		*cur_ptr = *list_ptr; // set to first node in list
 	int success = 0;
 
-	if (mem_ptr != NULL) // make_node (malloc) was successful
+	if (mem_ptr != NULL)
 	{
+		// we successfully allocated space for a Node.
+		// we should be able to insert into our list
 		success = 1;
 
-		while (curr_ptr != NULL && strcmp(item_ptr, curr_ptr->grocery_item) > 0) // could also use recursion, item_ptr is new item, using short circuit eval here
-		{																		 // program would break if second evaluation done while null
-			// moving the pointers through the list
-			prev_ptr = curr_ptr;
-			curr_ptr = curr_ptr->next_ptr; // curr_ptr could be null if list empty or at end of list (added curr_ptr condition to while)
+		while ((cur_ptr != NULL) && 
+			strcmp(item_ptr, cur_ptr->grocery_item) > 0) // short-circuit evaluation
+		{
+			// find the correct spot in the list to insert	
+			prev_ptr = cur_ptr;
+			cur_ptr = cur_ptr->next_ptr;
 		}
-		// found place to insert item
-		mem_ptr->next_ptr = mem_ptr;
+
+		// we know we're positioned correctly in the list to insert
+		// the new item
+
+		mem_ptr->next_ptr = cur_ptr;
 		if (prev_ptr != NULL)
 		{
-			//After the first node or at the end of the list
-			//mem_ptr->next_ptr = curr_ptr; // in both cases so "factor it out"
+			// inserting after the first node or at the 
+			// end of the list
+			//mem_ptr->next_ptr = cur_ptr;
 			prev_ptr->next_ptr = mem_ptr;
 		}
-		else // inserting at front or inserting into an empty list (prev_ptr == NULL)
+		else // prev_ptr == NULL
 		{
-			//mem_ptr->next_ptr = curr_ptr; // or *list_ptr // in both cases so "factor it out"
+			// inserting at front or inserting into an empty list
+			//mem_ptr->next_ptr = cur_ptr; // *list_ptr
 			*list_ptr = mem_ptr;
 		}
+		//mem_ptr->next_ptr = cur_ptr;
 	}
+
 	return success;
 }
 
+// list operation
+// removing the first item in the list
+// precondition: list must not be empty.
 char* delete_front(Node** list_ptr, char *return_string)
 {
-	//*list_ptr = (*list_ptr)->next_ptr; // now there's no way to reference the original node, need a temp ptr
 	Node* temp_ptr = *list_ptr;
-	// char return_string[25] = " ";	// (*list_ptr)->grocery_item;
+	//char return_string[25] = "";//(*list_ptr)->grocery_item;
 	*list_ptr = (*list_ptr)->next_ptr;
-	strcpy(return_string, (*temp_ptr)->grocery_item);
+	strcpy(return_string, temp_ptr->grocery_item);
+	free(temp_ptr);
+	//free(*list_ptr)
 
-	free(temp_ptr); // releases memory
-
-	return return_string; // array names are char* (would return address of first array element)
+	return return_string;
 }
+
+
+
 
 void print_list(Node* head_ptr)
 {
@@ -92,5 +123,6 @@ void print_list(Node* head_ptr)
 		printf("--> %s ", cur_ptr->grocery_item);
 		cur_ptr = cur_ptr->next_ptr;
 	}
+
 	printf("-->\n");
 }
