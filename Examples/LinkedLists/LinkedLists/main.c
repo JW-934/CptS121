@@ -20,11 +20,10 @@
 int main(int argc, char *argv[])
 {
 	Node* head_ptr = NULL; // list is empty
-	int success = 0, num = atoi(argv[1]), count = 0;
+	int success = 0, num = atoi(argv[1]), count = 0; // atoi(5)-->int 5 (not ascii code)
 	char item[25] = "", *return_ptr = NULL;
 
-	printf("argc: %d, argv[0]: %s, argv[1]: %s\n", argc, argv[0],
-		argv[1]);
+	printf("argc: %d, argv[0]: %s, argv[1]: %s\n", argc, argv[0], argv[1]);
 
 	/*success = insert_at_front(&head_ptr, "bananas");
 	success = insert_at_front(&head_ptr, "steak");
@@ -33,7 +32,7 @@ int main(int argc, char *argv[])
 	while (count < num)
 	{
 		printf("Enter an item: ");
-		fgets(item, 25, stdin);
+		fgets(item, 25, stdin); // fgets reads in newline as well (prints in cmd)
 		success = insert_in_order(&head_ptr, item);
 		++count;
 	}
