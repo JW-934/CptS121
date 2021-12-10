@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA8
-* Date: December 3, 2021, December 5, 2021
+* Date: December 3, 2021, December 5, 2021, December 10, 2021
 * Description: This program consists of numerous interview question functions.
 */
 
@@ -34,7 +34,16 @@ int binary_search(int list[], int target, int items)
 
 int is_palindrome(char* str, int length) //Recursive
 {
+	int palin = 0;
+	if (length = 0)
+	{
+		palin = 1;
+	}
+	else
+	{
 
+	}
+	return palin;
 }
 
 int sum_primes(unsigned int n) //Recursive

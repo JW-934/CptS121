@@ -2,7 +2,7 @@
 * Programmer: Jesse Watson
 * Class: CptS 121, Fall 2021; Lab Section 7
 * Programming Assignment: PA8
-* Date: December 3, 2021, December 5, 2021
+* Date: December 3, 2021, December 5, 2021, December 10, 2021
 * Description: This program consists of numerous interview question functions.
 */
 
@@ -45,7 +45,19 @@ int main(void)
 
 	printf("%s %s %s %s\n", bubstr[0], bubstr[1], bubstr[2], bubstr[3]);
 	///////////////////////////////////////////////////////////////
-	//is_palindrome////////////////////////////////////////////////
+	//is_palindrome//////////////////////////////////////////////// unfinished
+	char palin_str[] = "Racecar", nonpalin_str = "Not a palindrome";
+
+	//printf("str1: %d", is_palindrome(&palin_str, 7));
+	//printf("str2: %d", is_palindrome(&nonpalin_str, 16));
+	///////////////////////////////////////////////////////////////
+	//sum_primes///////////////////////////////////////////////////
+	unsigned int n = 50;
+
+	printf("Sum of primes: %d", sum_primes(n));
+
+
+
 
 
 	
